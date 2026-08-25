@@ -1,0 +1,121 @@
+import React from 'react';
+import { Breadcrumbs } from '../components/common/Breadcrumbs';
+import { Layers, ShieldCheck, CheckCircle2, Truck, Eye, Sparkles, Heart } from 'lucide-react';
+
+export const AboutPage = ({ onNavigate }) => {
+  return (
+    <div className="section" style={{ paddingTop: 'var(--space-6)', backgroundColor: '#FAF6ED' }}>
+      <div className="container" style={{ maxWidth: 920 }}>
+        <Breadcrumbs items={[{ label: 'À propos de MOKI' }]} onNavigate={onNavigate} />
+
+        {/* Hero Section Manifeste */}
+        <div style={{ textAlign: 'center', marginBottom: 'var(--space-12)', backgroundColor: '#4E0000', border: '1px solid rgba(255,174,1,0.25)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-12) var(--space-8)', boxShadow: 'var(--shadow-md)', color: '#FFFFFF' }}>
+          <div className="carepaw-nl-tag" style={{ margin: '0 auto var(--space-3)' }}>
+            <Sparkles size={13} color="#FFAE01" />
+            <span>Notre Philosophie D2C</span>
+          </div>
+          <h1 className="paws-section-title" style={{ fontSize: 'clamp(2.4rem, 4.5vw, 3.5rem)', color: '#FFFFFF', marginBottom: 'var(--space-3)' }}>
+            Moins, mais tellement mieux.
+          </h1>
+          <p className="paws-section-lead" style={{ margin: '0 auto', fontSize: '1.05rem', color: 'rgba(255,255,255,0.8)' }}>
+            Une sélection courte de 15 à 20 indispensables (équipements, accessoires et soins d'hygiène) pensés pour la vraie vie de vos chiens et chats.
+          </p>
+        </div>
+
+        {/* Section 1: Notre Histoire & Constat */}
+        <div style={{ backgroundColor: '#FFFFFF', border: '1px solid rgba(0,0,0,0.06)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-10)', marginBottom: 'var(--space-8)', boxShadow: 'var(--shadow-sm)' }}>
+          <h2 style={{ fontFamily: 'var(--font-serif-display)', fontSize: '1.8rem', color: '#141414', marginBottom: 'var(--space-4)' }}>
+            Pourquoi MOKI existe ?
+          </h2>
+          <p style={{ fontSize: '1.05rem', color: 'var(--color-text-secondary)', lineHeight: 1.8, marginBottom: 'var(--space-4)' }}>
+            L’animalerie traditionnelle regorge de milliers de références souvent superflues, d’accessoires fragiles et de formules de soin complexes dont on ignore la réelle utilité.
+          </p>
+          <p style={{ fontSize: '1.05rem', color: 'var(--color-text-secondary)', lineHeight: 1.8 }}>
+            <strong>MOKI est née d’une volonté simple :</strong> simplifier radicalement la vie des maîtres en se concentrant sur un catalogue restreint de 15 à 20 essentiels ultra-qualitatifs. Nous ne vendons <strong>ni alimentation ni médicaments</strong>, uniquement ce qui compte pour la promenade, l’hygiène douce, le jeu autonome et le confort de repos.
+          </p>
+        </div>
+
+        {/* Section 2: Nos 5 Engagements Clairs */}
+        <div style={{ marginBottom: 'var(--space-12)' }}>
+          <h2 style={{ fontFamily: 'var(--font-serif-display)', fontSize: '2.2rem', textAlign: 'center', color: '#141414', marginBottom: 'var(--space-8)' }}>
+            Nos 5 Engagements Concrets
+          </h2>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 'var(--space-4)' }}>
+            <div style={{ backgroundColor: '#FFFFFF', border: '1px solid rgba(0,0,0,0.06)', borderRadius: 'var(--radius-xl)', padding: 'var(--space-6)', display: 'flex', gap: 'var(--space-5)', alignItems: 'center', boxShadow: 'var(--shadow-sm)' }}>
+              <div style={{ width: 50, height: 50, borderRadius: 'var(--radius-full)', backgroundColor: 'rgba(255, 107, 0, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <Layers size={24} color="#FF6B00" />
+              </div>
+              <div>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#121212', marginBottom: '4px' }}>1. Sélection courte et exigeante</h3>
+                <p style={{ fontSize: '0.95rem', color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>
+                  Chaque référence répond à un besoin d'usage précis. Si un produit n'apporte pas un confort mesurable ou une simplification concrète, il ne figure pas dans notre sélection.
+                </p>
+              </div>
+            </div>
+
+            <div style={{ backgroundColor: '#FFFFFF', border: '1px solid rgba(0,0,0,0.06)', borderRadius: 'var(--radius-xl)', padding: 'var(--space-6)', display: 'flex', gap: 'var(--space-5)', alignItems: 'center', boxShadow: 'var(--shadow-sm)' }}>
+              <div style={{ width: 50, height: 50, borderRadius: 'var(--radius-full)', backgroundColor: 'rgba(255, 107, 0, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <ShieldCheck size={24} color="#FF6B00" />
+              </div>
+              <div>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#121212', marginBottom: '4px' }}>2. Sécurité et conception anatomique</h3>
+                <p style={{ fontSize: '0.95rem', color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>
+                  Nos harnais respectent la biomécanique articulaire, nos formules de soin sont au pH neutre physiologique et nos jouets sont testés pour résister à une utilisation quotidienne.
+                </p>
+              </div>
+            </div>
+
+            <div style={{ backgroundColor: '#FFFFFF', border: '1px solid rgba(0,0,0,0.06)', borderRadius: 'var(--radius-xl)', padding: 'var(--space-6)', display: 'flex', gap: 'var(--space-5)', alignItems: 'center', boxShadow: 'var(--shadow-sm)' }}>
+              <div style={{ width: 50, height: 50, borderRadius: 'var(--radius-full)', backgroundColor: 'rgba(255, 107, 0, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <CheckCircle2 size={24} color="#FF6B00" />
+              </div>
+              <div>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#121212', marginBottom: '4px' }}>3. Conformité réglementaire stricte</h3>
+                <p style={{ fontSize: '0.95rem', color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>
+                  Tous nos produits répondent aux normes européennes d'hygiène et de sécurité applicables aux animaux de compagnie.
+                </p>
+              </div>
+            </div>
+
+            <div style={{ backgroundColor: '#FFFFFF', border: '1px solid rgba(0,0,0,0.06)', borderRadius: 'var(--radius-xl)', padding: 'var(--space-6)', display: 'flex', gap: 'var(--space-5)', alignItems: 'center', boxShadow: 'var(--shadow-sm)' }}>
+              <div style={{ width: 50, height: 50, borderRadius: 'var(--radius-full)', backgroundColor: 'rgba(255, 107, 0, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <Eye size={24} color="#FF6B00" />
+              </div>
+              <div>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#121212', marginBottom: '4px' }}>4. Transparence totale des formules</h3>
+                <p style={{ fontSize: '0.95rem', color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>
+                  Nous détaillons l’intégralité des ingrédients cosmétiques et des matériaux employés (silicone alimentaire, acier inox, bois certifié, mousse orthopédique).
+                </p>
+              </div>
+            </div>
+
+            <div style={{ backgroundColor: '#FFFFFF', border: '1px solid rgba(0,0,0,0.06)', borderRadius: 'var(--radius-xl)', padding: 'var(--space-6)', display: 'flex', gap: 'var(--space-5)', alignItems: 'center', boxShadow: 'var(--shadow-sm)' }}>
+              <div style={{ width: 50, height: 50, borderRadius: 'var(--radius-full)', backgroundColor: 'rgba(255, 107, 0, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <Truck size={24} color="#FF6B00" />
+              </div>
+              <div>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#121212', marginBottom: '4px' }}>5. Expédition directe depuis la France</h3>
+                <p style={{ fontSize: '0.95rem', color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>
+                  Notre stock physique est hébergé en France pour vous garantir une préparation sous 24h et une livraison rapide sans intermédiaire.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA Footer */}
+        <div style={{ textAlign: 'center' }}>
+          <button
+            type="button"
+            className="btn btn-primary btn-lg"
+            onClick={() => onNavigate('nos-essentiels')}
+            style={{ borderRadius: 'var(--radius-full)', padding: '16px 36px', fontSize: '1rem' }}
+          >
+            Découvrir notre sélection
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
