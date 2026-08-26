@@ -983,13 +983,22 @@ input, select, textarea {
 }
 
 .paws-sunburst-badge {
-  width: 72px;
-  height: 72px;
+  width: 76px;
+  height: 76px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
+  cursor: pointer;
+  filter: drop-shadow(0 6px 18px rgba(255, 174, 1, 0.45));
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+  animation: badgeFloating 3.6s ease-in-out infinite alternate;
+}
+
+.paws-sunburst-badge:hover {
+  transform: scale(1.12) translateY(-3px);
+  filter: drop-shadow(0 10px 24px rgba(255, 174, 1, 0.75));
 }
 
 .sunburst-svg {
@@ -998,13 +1007,47 @@ input, select, textarea {
   position: absolute;
   top: 0;
   left: 0;
+  animation: sunburstRotate 22s linear infinite;
+  transform-origin: center center;
+  transition: animation-duration 0.3s ease;
+}
+
+.paws-sunburst-badge:hover .sunburst-svg {
+  animation-duration: 7s;
 }
 
 .sunburst-paw-inner {
-  font-size: 26px;
   position: relative;
   z-index: 2;
-  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pawGentleBeat 2.6s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+.paws-sunburst-badge:hover .sunburst-paw-inner {
+  animation: pawWiggle 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes badgeFloating {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-6px); }
+}
+
+@keyframes sunburstRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes pawGentleBeat {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.14); }
+}
+
+@keyframes pawWiggle {
+  0%   { transform: scale(1.15) rotate(-10deg); }
+  100% { transform: scale(1.15) rotate(10deg); }
 }
 
 .paws-left-title {
