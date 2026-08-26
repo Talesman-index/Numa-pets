@@ -24,10 +24,10 @@ export const JournalPage = ({ onNavigate }) => {
         <Breadcrumbs items={[{ label: 'Le Journal MOKI' }]} onNavigate={onNavigate} />
 
         {/* Hero Header Journal */}
-        <div style={{ backgroundColor: '#4E0000', border: '1px solid rgba(255,174,1,0.25)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-12) var(--space-8)', textAlign: 'center', marginBottom: 'var(--space-10)', boxShadow: 'var(--shadow-md)', color: '#FFFFFF' }}>
+        <div className="reveal-up" style={{ backgroundColor: '#4E0000', border: '1px solid rgba(255,174,1,0.25)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-12) var(--space-8)', textAlign: 'center', marginBottom: 'var(--space-10)', boxShadow: 'var(--shadow-md)', color: '#FFFFFF' }}>
           <div className="carepaw-nl-tag" style={{ margin: '0 auto var(--space-3)' }}>
             <Sparkles size={13} color="#FFAE01" />
-            <span>Guides & Conseils Vétérinaires</span>
+            <span>Guides &amp; Conseils Vétérinaires</span>
           </div>
           <h1 className="paws-section-title" style={{ fontSize: 'clamp(2.4rem, 4.5vw, 3.5rem)', color: '#FFFFFF', marginBottom: 'var(--space-3)' }}>
             Le Journal MOKI
@@ -38,7 +38,7 @@ export const JournalPage = ({ onNavigate }) => {
         </div>
 
         {/* Filter Pills */}
-        <div style={{ display: 'flex', gap: 'var(--space-3)', justifyContent: 'center', marginBottom: 'var(--space-12)', flexWrap: 'wrap' }}>
+        <div className="reveal-fade" style={{ display: 'flex', gap: 'var(--space-3)', justifyContent: 'center', marginBottom: 'var(--space-12)', flexWrap: 'wrap' }}>
           {tags.map((t) => (
             <button
               key={t.id}
@@ -53,7 +53,7 @@ export const JournalPage = ({ onNavigate }) => {
         </div>
 
         {/* Articles Grid */}
-        <div className="paws-journal-grid">
+        <div className="paws-journal-grid stagger-children">
           {filteredArticles.map((art) => (
             <article
               key={art.id}

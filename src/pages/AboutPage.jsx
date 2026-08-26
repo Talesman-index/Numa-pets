@@ -9,7 +9,7 @@ export const AboutPage = ({ onNavigate }) => {
         <Breadcrumbs items={[{ label: 'À propos de MOKI' }]} onNavigate={onNavigate} />
 
         {/* Hero Section Manifeste */}
-        <div style={{ textAlign: 'center', marginBottom: 'var(--space-12)', backgroundColor: '#4E0000', border: '1px solid rgba(255,174,1,0.25)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-12) var(--space-8)', boxShadow: 'var(--shadow-md)', color: '#FFFFFF' }}>
+        <div className="reveal-up" style={{ textAlign: 'center', marginBottom: 'var(--space-12)', backgroundColor: '#4E0000', border: '1px solid rgba(255,174,1,0.25)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-12) var(--space-8)', boxShadow: 'var(--shadow-md)', color: '#FFFFFF' }}>
           <div className="carepaw-nl-tag" style={{ margin: '0 auto var(--space-3)' }}>
             <Sparkles size={13} color="#FFAE01" />
             <span>Notre Philosophie D2C</span>
@@ -23,7 +23,7 @@ export const AboutPage = ({ onNavigate }) => {
         </div>
 
         {/* Section 1: Notre Histoire & Constat */}
-        <div style={{ backgroundColor: '#FFFFFF', border: '1px solid rgba(0,0,0,0.06)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-10)', marginBottom: 'var(--space-8)', boxShadow: 'var(--shadow-sm)' }}>
+        <div className="reveal-left" style={{ backgroundColor: '#FFFFFF', border: '1px solid rgba(0,0,0,0.06)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-10)', marginBottom: 'var(--space-8)', boxShadow: 'var(--shadow-sm)' }}>
           <h2 style={{ fontFamily: 'var(--font-serif-display)', fontSize: '1.8rem', color: '#141414', marginBottom: 'var(--space-4)' }}>
             Pourquoi MOKI existe ?
           </h2>
@@ -36,12 +36,12 @@ export const AboutPage = ({ onNavigate }) => {
         </div>
 
         {/* Section 2: Nos 5 Engagements Clairs */}
-        <div style={{ marginBottom: 'var(--space-12)' }}>
+        <div className="reveal-up" style={{ marginBottom: 'var(--space-12)' }}>
           <h2 style={{ fontFamily: 'var(--font-serif-display)', fontSize: '2.2rem', textAlign: 'center', color: '#141414', marginBottom: 'var(--space-8)' }}>
             Nos 5 Engagements Concrets
           </h2>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 'var(--space-4)' }}>
+          <div className="stagger-children" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 'var(--space-4)' }}>
             <div style={{ backgroundColor: '#FFFFFF', border: '1px solid rgba(0,0,0,0.06)', borderRadius: 'var(--radius-xl)', padding: 'var(--space-6)', display: 'flex', gap: 'var(--space-5)', alignItems: 'center', boxShadow: 'var(--shadow-sm)' }}>
               <div style={{ width: 50, height: 50, borderRadius: 'var(--radius-full)', backgroundColor: 'rgba(255, 107, 0, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                 <Layers size={24} color="#FF6B00" />

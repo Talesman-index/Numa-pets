@@ -42,7 +42,7 @@ export const FaqPage = ({ onNavigate }) => {
         <Breadcrumbs items={[{ label: 'Centre d’aide & FAQ' }]} onNavigate={onNavigate} />
 
         {/* Hero Aide */}
-        <div style={{ textAlign: 'center', marginBottom: 'var(--space-10)', backgroundColor: '#4E0000', border: '1px solid rgba(255,174,1,0.25)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-12) var(--space-8)', boxShadow: 'var(--shadow-md)', color: '#FFFFFF' }}>
+        <div className="reveal-up" style={{ textAlign: 'center', marginBottom: 'var(--space-10)', backgroundColor: '#4E0000', border: '1px solid rgba(255,174,1,0.25)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-12) var(--space-8)', boxShadow: 'var(--shadow-md)', color: '#FFFFFF' }}>
           <div className="carepaw-nl-tag" style={{ margin: '0 auto var(--space-3)' }}>
             <Sparkles size={13} color="#FFAE01" />
             <span>Support & Assistance Client</span>
@@ -56,7 +56,7 @@ export const FaqPage = ({ onNavigate }) => {
         </div>
 
         {/* Search in FAQ */}
-        <div style={{ position: 'relative', marginBottom: 'var(--space-8)' }}>
+        <div className="reveal-fade" style={{ position: 'relative', marginBottom: 'var(--space-8)' }}>
           <Search size={18} color="#FF6B00" style={{ position: 'absolute', left: 18, top: 16 }} />
           <input
             type="text"
@@ -69,7 +69,7 @@ export const FaqPage = ({ onNavigate }) => {
         </div>
 
         {/* Category Pills */}
-        <div style={{ display: 'flex', gap: 'var(--space-2)', overflowX: 'auto', paddingBottom: 'var(--space-3)', marginBottom: 'var(--space-8)', justifyContent: 'center', flexWrap: 'wrap' }}>
+        <div className="reveal-fade" style={{ display: 'flex', gap: 'var(--space-2)', overflowX: 'auto', paddingBottom: 'var(--space-3)', marginBottom: 'var(--space-8)', justifyContent: 'center', flexWrap: 'wrap' }}>
           <button
             type="button"
             className={`btn ${selectedCat === 'all' ? 'btn-primary' : 'btn-secondary'} btn-sm`}
@@ -92,7 +92,7 @@ export const FaqPage = ({ onNavigate }) => {
         </div>
 
         {/* FAQ Accordion List */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-8)', marginBottom: 'var(--space-16)' }}>
+        <div className="reveal-up" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-8)', marginBottom: 'var(--space-16)' }}>
           {filteredCategories.length === 0 ? (
             <div style={{ textAlign: 'center', padding: 'var(--space-10)', backgroundColor: '#FFFFFF', borderRadius: 'var(--radius-2xl)', border: '1px solid rgba(0,0,0,0.06)' }}>
               <p style={{ color: 'var(--color-text-secondary)' }}>Aucune question trouvée pour « {searchTerm} ».</p>

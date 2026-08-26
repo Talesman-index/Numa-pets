@@ -1,26 +1,68 @@
 import React from 'react';
-import { ArrowUpRight, PawPrint, Leaf } from 'lucide-react';
+import { ArrowUpRight, PawPrint, Leaf, Sparkles } from 'lucide-react';
 import { ScrollDownIndicator } from '../common/ScrollDownIndicator';
+import { useHeroParallax } from '../../hooks/useScrollReveal';
 
 export const HeroSection = ({ onNavigate }) => {
+  const { scrollY, mousePos, heroRef } = useHeroParallax();
+
+  // Facteurs de parallaxe au scroll
+  const headlineParallax = Math.min(scrollY * 0.22, 120);
+  const headlineOpacity = Math.max(0, 1 - scrollY / 550);
+  const leftColParallax = Math.min(scrollY * 0.12, 80);
+  const centerParallax = scrollY * -0.14;
+  const rightColParallax = Math.min(scrollY * 0.24, 130);
+
+  // Parallaxe à la souris (légère inertie sur desktop)
+  const mouseX = mousePos.x;
+  const mouseY = mousePos.y;
+
   return (
-    <section className="paws-hero-section" style={{ position: 'relative' }}>
+    <section ref={heroRef} className="paws-hero-section" style={{ position: 'relative' }}>
+      
+      {/* Background Parallax Floating Elements */}
+      <div 
+        className="paws-hero-bg-orb paws-hero-bg-orb--1"
+        style={{
+          transform: `translate3d(${mouseX * -25}px, ${mouseY * -20 + scrollY * 0.35}px, 0)`
+        }}
+      />
+      <div 
+        className="paws-hero-bg-orb paws-hero-bg-orb--2"
+        style={{
+          transform: `translate3d(${mouseX * 20}px, ${mouseY * 25 + scrollY * 0.25}px, 0)`
+        }}
+      />
+
       <div className="container paws-hero-container">
 
-        {/* 1. Titre Géant */}
-        <div className="paws-hero-headline-wrap reveal-up">
+        {/* 1. Titre Géant avec Parallaxe Scroll */}
+        <div 
+          className="paws-hero-headline-wrap reveal-up"
+          style={{
+            transform: `translate3d(0, ${headlineParallax}px, 0)`,
+            opacity: headlineOpacity,
+            transition: 'transform 0.1s ease-out, opacity 0.1s ease-out'
+          }}
+        >
           <h1 className="paws-hero-title">
             <span className="paws-title-dark">Le Confort &amp; le Soin</span>
             <span className="paws-title-orange">Pensés Pour Chiens &amp; Chats</span>
           </h1>
         </div>
 
-        {/* 2. Scène Dynamique du Hero */}
+        {/* 2. Scène Dynamique du Hero avec Couches Multi-profondeurs */}
         <div className="paws-hero-stage">
 
-          {/* Colonne Gauche */}
-          <div className="paws-hero-left stagger-children">
-            {/* Macaron Solaire */}
+          {/* Colonne Gauche (Layer 1) */}
+          <div 
+            className="paws-hero-left stagger-children"
+            style={{
+              transform: `translate3d(${mouseX * -6}px, ${leftColParallax + mouseY * -4}px, 0)`,
+              transition: 'transform 0.12s cubic-bezier(0.16, 1, 0.3, 1)'
+            }}
+          >
+            {/* Macaron Solaire Interactif */}
             <div className="paws-sunburst-badge">
               <svg viewBox="0 0 100 100" className="sunburst-svg">
                 <path
@@ -53,8 +95,14 @@ export const HeroSection = ({ onNavigate }) => {
             </button>
           </div>
 
-          {/* Colonne Centrale : Image */}
-          <div className="paws-hero-center reveal-scale">
+          {/* Colonne Centrale : Image de la cliente (Layer 2 - Profondeur inversée) */}
+          <div 
+            className="paws-hero-center reveal-scale"
+            style={{
+              transform: `translate3d(${mouseX * 10}px, ${centerParallax + mouseY * 8}px, 0)`,
+              transition: 'transform 0.15s cubic-bezier(0.16, 1, 0.3, 1)'
+            }}
+          >
             <div className="paws-center-composition">
               <img
                 src="/images/hero-woman-dog.png"
@@ -64,8 +112,14 @@ export const HeroSection = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Colonne Droite : Packs */}
-          <div className="paws-hero-right reveal-right">
+          {/* Colonne Droite : Packs & Emballages Produits (Layer 3 - Flottement rapide) */}
+          <div 
+            className="paws-hero-right reveal-right"
+            style={{
+              transform: `translate3d(${mouseX * -12}px, ${rightColParallax + mouseY * -10}px, 0)`,
+              transition: 'transform 0.12s cubic-bezier(0.16, 1, 0.3, 1)'
+            }}
+          >
             <div
               className="paws-hero-packs-wrap"
               onClick={() => onNavigate('nos-essentiels')}
@@ -94,7 +148,7 @@ export const HeroSection = ({ onNavigate }) => {
       </div>
 
       {/* Scroll-Down Indicator */}
-      <ScrollDownIndicator />
+      <ScrollDownIndicator targetId="histoire-section" />
     </section>
   );
 };

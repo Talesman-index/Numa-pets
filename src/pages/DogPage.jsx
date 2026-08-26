@@ -47,7 +47,7 @@ export const DogPage = ({ onNavigate, initialCategory }) => {
         <Breadcrumbs items={[{ label: 'Collection Chien' }]} onNavigate={onNavigate} />
 
         {/* Hero Section Chien */}
-        <div style={{ backgroundColor: '#4E0000', border: '1px solid rgba(255,174,1,0.25)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-12) var(--space-8)', marginBottom: 'var(--space-10)', textAlign: 'center', boxShadow: 'var(--shadow-md)', color: '#FFFFFF' }}>
+        <div className="reveal-up" style={{ backgroundColor: '#4E0000', border: '1px solid rgba(255,174,1,0.25)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-12) var(--space-8)', marginBottom: 'var(--space-10)', textAlign: 'center', boxShadow: 'var(--shadow-md)', color: '#FFFFFF' }}>
           <div className="carepaw-nl-tag" style={{ margin: '0 auto var(--space-3)' }}>
             <Sparkles size={13} color="#FFAE01" />
             <span>Univers Chien MOKI</span>
@@ -61,7 +61,7 @@ export const DogPage = ({ onNavigate, initialCategory }) => {
         </div>
 
         {/* Category Filter Pills */}
-        <div style={{ display: 'flex', gap: 'var(--space-3)', justifyContent: 'center', paddingBottom: 'var(--space-4)', marginBottom: 'var(--space-8)', flexWrap: 'wrap' }}>
+        <div className="reveal-fade" style={{ display: 'flex', gap: 'var(--space-3)', justifyContent: 'center', paddingBottom: 'var(--space-4)', marginBottom: 'var(--space-8)', flexWrap: 'wrap' }}>
           {dogCategories.map((cat) => (
             <button
               key={cat.id}
@@ -76,7 +76,7 @@ export const DogPage = ({ onNavigate, initialCategory }) => {
         </div>
 
         {/* Filter Bar & Sort Controls */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#FFFFFF', padding: 'var(--space-4) var(--space-6)', borderRadius: 'var(--radius-xl)', marginBottom: 'var(--space-8)', flexWrap: 'wrap', gap: 'var(--space-4)', border: '1px solid rgba(0,0,0,0.06)', boxShadow: 'var(--shadow-sm)' }}>
+        <div className="reveal-up" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#FFFFFF', padding: 'var(--space-4) var(--space-6)', borderRadius: 'var(--radius-xl)', marginBottom: 'var(--space-8)', flexWrap: 'wrap', gap: 'var(--space-4)', border: '1px solid rgba(0,0,0,0.06)', boxShadow: 'var(--shadow-sm)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-6)', flexWrap: 'wrap' }}>
             <span style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: '#141414' }}>
               {filteredProducts.length} référence{filteredProducts.length > 1 ? 's' : ''} disponible{filteredProducts.length > 1 ? 's' : ''}
@@ -128,7 +128,7 @@ export const DogPage = ({ onNavigate, initialCategory }) => {
 
         {/* Products Grid */}
         {filteredProducts.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: 'var(--space-16) 0', backgroundColor: '#FFFFFF', borderRadius: 'var(--radius-2xl)', border: '1px solid rgba(0,0,0,0.06)' }}>
+          <div className="reveal-scale" style={{ textAlign: 'center', padding: 'var(--space-16) 0', backgroundColor: '#FFFFFF', borderRadius: 'var(--radius-2xl)', border: '1px solid rgba(0,0,0,0.06)' }}>
             <p style={{ fontSize: 'var(--text-base)', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-4)' }}>
               Aucun produit ne correspond à vos filtres actuels.
             </p>
@@ -145,7 +145,7 @@ export const DogPage = ({ onNavigate, initialCategory }) => {
             </button>
           </div>
         ) : (
-          <div className="products-grid">
+          <div className="products-grid stagger-children">
             {filteredProducts.map((prod) => (
               <ProductCard key={prod.id} product={prod} onNavigate={onNavigate} />
             ))}

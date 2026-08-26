@@ -50,7 +50,7 @@ export const CatalogPage = ({ onNavigate, filterParams = {} }) => {
         <Breadcrumbs items={[{ label: 'Nos Essentiels' }]} onNavigate={onNavigate} />
 
         {/* Catalog Hero Banner */}
-        <div style={{ backgroundColor: '#4E0000', border: '1px solid rgba(255,174,1,0.25)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-12) var(--space-8)', marginBottom: 'var(--space-10)', textAlign: 'center', boxShadow: 'var(--shadow-md)', color: '#FFFFFF' }}>
+        <div className="reveal-up" style={{ backgroundColor: '#4E0000', border: '1px solid rgba(255,174,1,0.25)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-12) var(--space-8)', marginBottom: 'var(--space-10)', textAlign: 'center', boxShadow: 'var(--shadow-md)', color: '#FFFFFF' }}>
           <div className="carepaw-nl-tag" style={{ margin: '0 auto var(--space-3)' }}>
             <Sparkles size={13} color="#FFAE01" />
             <span>Sélection Courte & Éthique</span>
@@ -64,7 +64,7 @@ export const CatalogPage = ({ onNavigate, filterParams = {} }) => {
         </div>
 
         {/* Filters Panel */}
-        <div style={{ backgroundColor: '#FFFFFF', border: '1px solid rgba(0,0,0,0.06)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-6)', marginBottom: 'var(--space-8)', boxShadow: 'var(--shadow-sm)' }}>
+        <div className="reveal-fade" style={{ backgroundColor: '#FFFFFF', border: '1px solid rgba(0,0,0,0.06)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-6)', marginBottom: 'var(--space-8)', boxShadow: 'var(--shadow-sm)' }}>
           {/* Animal Selector */}
           <div style={{ display: 'flex', gap: 'var(--space-3)', marginBottom: 'var(--space-4)', flexWrap: 'wrap' }}>
             {animalFilters.map((af) => (
@@ -148,7 +148,7 @@ export const CatalogPage = ({ onNavigate, filterParams = {} }) => {
                 style={{ width: 'auto', padding: '8px 14px', fontSize: 'var(--text-xs)', borderRadius: 'var(--radius-full)', fontWeight: 600 }}
                 aria-label="Trier les produits"
               >
-                <option value="popular">Trier par : Populaires</option>
+                <option value="popular">Trier par : Plus plébiscités</option>
                 <option value="new">Nouveautés</option>
                 <option value="price-asc">Prix : croissant</option>
                 <option value="price-desc">Prix : décroissant</option>
@@ -159,9 +159,9 @@ export const CatalogPage = ({ onNavigate, filterParams = {} }) => {
 
         {/* Product Grid */}
         {filteredProducts.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: 'var(--space-16) 0', backgroundColor: '#FFFFFF', borderRadius: 'var(--radius-2xl)', border: '1px solid rgba(0,0,0,0.06)' }}>
+          <div className="reveal-scale" style={{ textAlign: 'center', padding: 'var(--space-16) 0', backgroundColor: '#FFFFFF', borderRadius: 'var(--radius-2xl)', border: '1px solid rgba(0,0,0,0.06)' }}>
             <p style={{ fontSize: 'var(--text-base)', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-4)' }}>
-              Aucun produit ne correspond à ces critères de recherche.
+              Aucun produit ne correspond à votre sélection.
             </p>
             <button
               type="button"
@@ -178,7 +178,7 @@ export const CatalogPage = ({ onNavigate, filterParams = {} }) => {
             </button>
           </div>
         ) : (
-          <div className="products-grid">
+          <div className="products-grid stagger-children">
             {filteredProducts.map((prod) => (
               <ProductCard key={prod.id} product={prod} onNavigate={onNavigate} />
             ))}
