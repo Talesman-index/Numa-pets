@@ -3,7 +3,7 @@ import { Check, ShieldCheck, Heart, Sparkles, ArrowRight } from 'lucide-react';
 
 export const BondStorySection = ({ onNavigate }) => {
   return (
-    <section className="section paws-story-section">
+    <section id="histoire-section" className="section paws-story-section">
       <div className="container">
         <div className="paws-story-grid">
           

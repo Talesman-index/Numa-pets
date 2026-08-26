@@ -408,66 +408,166 @@ input, select, textarea {
 }
 
 /* ==========================================================================
-   SCROLL-DOWN INDICATOR
+   SCROLL-DOWN INDICATOR (HERO)
    ========================================================================== */
-.scroll-down-indicator {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  opacity: 0;
-  animation: sdiAppear 0.6s ease 1.4s forwards;
+.sdi-wrapper {
   position: absolute;
-  bottom: 32px;
+  bottom: 22px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 10;
-}
-@keyframes sdiAppear {
-  to { opacity: 1; }
-}
-
-/* Mouse shape */
-.sdi-mouse {
-  width: 24px;
-  height: 38px;
-  border: 2px solid rgba(78, 0, 0, 0.5);
-  border-radius: 12px;
+  z-index: 20;
   display: flex;
   justify-content: center;
-  padding-top: 5px;
-  position: relative;
-}
-.sdi-mouse-dot {
-  width: 4px;
-  height: 8px;
-  background: #4E0000;
-  border-radius: 2px;
-  animation: scrollDot 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-@keyframes scrollDot {
-  0%   { transform: translateY(0); opacity: 1; }
-  60%  { transform: translateY(12px); opacity: 0.3; }
-  100% { transform: translateY(0); opacity: 1; }
+  pointer-events: auto;
+  opacity: 0;
+  animation: sdiReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
 }
 
-/* Chevrons */
-.sdi-chevrons {
+@keyframes sdiReveal {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 16px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.sdi-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 18px 8px 12px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(78, 0, 0, 0.12);
+  border-radius: var(--radius-full);
+  box-shadow: 0 8px 24px rgba(78, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  color: #4E0000;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: sdiFloat 3.8s ease-in-out infinite alternate;
+}
+
+.sdi-pill-btn:hover {
+  background: #FFFFFF;
+  border-color: #FFAE01;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(255, 174, 1, 0.32), 0 4px 10px rgba(78, 0, 0, 0.1);
+}
+
+@keyframes sdiFloat {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-5px); }
+}
+
+/* Micro track with laser bead */
+.sdi-track {
+  width: 16px;
+  height: 26px;
+  border: 1.5px solid rgba(78, 0, 0, 0.35);
+  border-radius: 99px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 3px 0;
+  background: rgba(78, 0, 0, 0.04);
+  transition: border-color 0.3s ease;
+}
+
+.sdi-pill-btn:hover .sdi-track {
+  border-color: #FFAE01;
+  background: rgba(255, 174, 1, 0.12);
+}
+
+.sdi-glow-bead {
+  width: 5px;
+  height: 7px;
+  background: linear-gradient(180deg, #FFAE01 0%, #E69D00 100%);
+  border-radius: 99px;
+  box-shadow: 0 0 6px rgba(255, 174, 1, 0.8);
+  animation: sdiBeadGlide 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes sdiBeadGlide {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(11px);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.3;
+  }
+}
+
+/* Labels */
+.sdi-content {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sdi-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #4E0000;
+  line-height: 1;
+}
+
+.sdi-dot {
+  font-size: 10px;
+  color: #FFAE01;
+  opacity: 0.8;
+}
+
+.sdi-sub {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(78, 0, 0, 0.6);
+  line-height: 1;
+}
+
+/* Arrows container */
+.sdi-arrow-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: -4px;
+  gap: -6px;
+  color: #FFAE01;
+  margin-left: -2px;
 }
-.sdi-chevron {
-  color: #4E0000;
-  animation: chevronBounce 1.5s ease-in-out infinite;
+
+.sdi-arrow {
+  color: #FFAE01;
+  animation: arrowBounce 1.6s ease-in-out infinite;
 }
-.sdi-chevron--1 { animation-delay: 0s; opacity: 0.8; }
-.sdi-chevron--2 { animation-delay: 0.18s; opacity: 0.4; }
-@keyframes chevronBounce {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(4px); }
+
+.sdi-arrow--1 {
+  animation-delay: 0s;
+  opacity: 0.9;
+}
+
+.sdi-arrow--2 {
+  margin-top: -8px;
+  animation-delay: 0.2s;
+  opacity: 0.45;
+}
+
+@keyframes arrowBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
 }
 
 
@@ -919,7 +1019,7 @@ input, select, textarea {
    ========================================================================== */
 .paws-hero-section {
   background-color: var(--color-bg-hero);
-  padding: 60px 0 60px;
+  padding: 60px 0 84px;
   min-height: calc(90vh);
   display: flex;
   align-items: center;
