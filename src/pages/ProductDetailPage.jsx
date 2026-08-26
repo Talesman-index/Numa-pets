@@ -132,20 +132,20 @@ export const ProductDetailPage = ({ slug, onNavigate }) => {
             )}
 
             {/* Quality badge highlight below gallery */}
-            <div style={{ marginTop: 'var(--space-8)', padding: 'var(--space-4)', backgroundColor: 'var(--color-surface-subtle)', borderRadius: 'var(--radius-lg)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)', fontSize: 'var(--text-xs)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+            <div className="pdp-trust-highlights">
+              <div className="pdp-trust-item">
                 <Truck size={16} color="var(--color-brand-primary)" />
                 <span>Expédié sous 24h ouvrées</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+              <div className="pdp-trust-item">
                 <RotateCcw size={16} color="var(--color-brand-primary)" />
                 <span>Retours sous 30 jours</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+              <div className="pdp-trust-item">
                 <ShieldCheck size={16} color="var(--color-brand-primary)" />
-                <span>Formule & matériaux testés</span>
+                <span>Formule &amp; matériaux testés</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+              <div className="pdp-trust-item">
                 <Sparkles size={16} color="var(--color-brand-primary)" />
                 <span>0 ingrédient superflu</span>
               </div>
@@ -153,31 +153,31 @@ export const ProductDetailPage = ({ slug, onNavigate }) => {
           </div>
 
           {/* Right Column: Details & Purchase */}
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', marginBottom: 'var(--space-2)' }}>
+          <div className="pdp-info-col">
+            <div className="pdp-badge-row">
               <span className={`badge ${product.animal === 'dog' ? 'badge-dog' : 'badge-cat'}`}>
                 {product.animal === 'dog' ? 'Chien' : 'Chat'}
               </span>
-              <span style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              <span className="pdp-category-label">
                 {product.categoryLabel}
               </span>
               {product.isBestSeller && <span className="badge badge-bestseller">Best-seller</span>}
             </div>
 
-            <h1 style={{ fontSize: 'var(--text-3xl)', fontWeight: 800, color: 'var(--color-brand-primary)', marginBottom: 'var(--space-2)', lineHeight: 1.2 }}>
+            <h1 className="pdp-product-title">
               {product.title}
             </h1>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)', marginBottom: 'var(--space-4)' }}>
+            <div className="pdp-meta-row">
               <StarRating rating={product.rating} reviewCount={product.reviewCount} />
-              <span style={{ color: 'var(--color-border)' }}>|</span>
-              <span style={{ fontSize: 'var(--text-xs)', color: product.inStock ? 'var(--color-accent-emerald)' : 'var(--color-accent-rose)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '4px' }}>
-                <span style={{ width: 8, height: 8, borderRadius: 'var(--radius-full)', backgroundColor: product.inStock ? '#10B981' : '#EF4444', display: 'inline-block' }} />
+              <span className="pdp-meta-divider">|</span>
+              <span className={`pdp-stock-indicator ${product.inStock ? 'in-stock' : 'out-of-stock'}`}>
+                <span className="pdp-stock-dot" />
                 {product.inStock ? `En stock (${product.stockQuantity} disponibles)` : 'Rupture temporaire'}
               </span>
             </div>
 
-            <p style={{ fontSize: 'var(--text-base)', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-6)', lineHeight: 1.6 }}>
+            <p className="pdp-description">
               {product.description}
             </p>
 
@@ -187,7 +187,7 @@ export const ProductDetailPage = ({ slug, onNavigate }) => {
                 className={`purchase-option-card ${!isSubscription ? 'selected' : ''}`}
                 onClick={() => setIsSubscription(false)}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
+                <div className="pdp-option-left">
                   <input
                     type="radio"
                     checked={!isSubscription}
@@ -195,11 +195,11 @@ export const ProductDetailPage = ({ slug, onNavigate }) => {
                     aria-label="Achat unique"
                   />
                   <div>
-                    <div style={{ fontWeight: 700, fontSize: 'var(--text-sm)' }}>Achat unique</div>
-                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)' }}>Commande ponctuelle sans engagement</div>
+                    <div className="pdp-option-title">Achat unique</div>
+                    <div className="pdp-option-desc">Commande ponctuelle sans engagement</div>
                   </div>
                 </div>
-                <div style={{ fontSize: 'var(--text-lg)', fontWeight: 800 }}>
+                <div className="pdp-option-price">
                   {product.price.toFixed(2)} €
                 </div>
               </div>
@@ -208,7 +208,7 @@ export const ProductDetailPage = ({ slug, onNavigate }) => {
                 className={`purchase-option-card ${isSubscription ? 'selected' : ''}`}
                 onClick={() => setIsSubscription(true)}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
+                <div className="pdp-option-left">
                   <input
                     type="radio"
                     checked={isSubscription}
@@ -216,20 +216,20 @@ export const ProductDetailPage = ({ slug, onNavigate }) => {
                     aria-label="Livraison automatique"
                   />
                   <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
-                      <span style={{ fontWeight: 700, fontSize: 'var(--text-sm)' }}>Livraison automatique</span>
-                      <span className="badge" style={{ backgroundColor: '#ECFDF5', color: '#047857' }}>-10%</span>
+                    <div className="pdp-option-title-wrap">
+                      <span className="pdp-option-title">Livraison automatique</span>
+                      <span className="badge badge-discount-pill">-10%</span>
                     </div>
-                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-accent-emerald)', fontWeight: 500 }}>
+                    <div className="pdp-option-desc-sub">
                       Livré tous les 2 mois • Modifiable ou annulable en 1 clic
                     </div>
                   </div>
                 </div>
-                <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontSize: 'var(--text-lg)', fontWeight: 800, color: 'var(--color-accent-emerald)' }}>
+                <div className="pdp-option-price-col">
+                  <div className="pdp-option-price pdp-option-price--discounted">
                     {product.subscriptionPrice.toFixed(2)} €
                   </div>
-                  <div style={{ fontSize: 'var(--text-xs)', textDecoration: 'line-through', color: 'var(--color-text-muted)' }}>
+                  <div className="pdp-option-price--old">
                     {product.price.toFixed(2)} €
                   </div>
                 </div>
@@ -258,13 +258,14 @@ export const ProductDetailPage = ({ slug, onNavigate }) => {
             ))}
 
             {/* Quantity and Add to Cart Button */}
-            <div style={{ display: 'flex', gap: 'var(--space-4)', alignItems: 'center', marginTop: 'var(--space-6)', marginBottom: 'var(--space-6)' }}>
-              <QuantitySelector value={quantity} onChange={setQuantity} />
+            <div className="pdp-action-bar">
+              <div className="pdp-qty-wrap">
+                <QuantitySelector value={quantity} onChange={setQuantity} />
+              </div>
 
               <button
                 type="button"
-                className="btn btn-primary btn-lg"
-                style={{ flexGrow: 1 }}
+                className="btn btn-primary btn-lg pdp-btn-cart"
                 onClick={handleAddToCart}
                 disabled={!product.inStock}
               >
@@ -276,9 +277,8 @@ export const ProductDetailPage = ({ slug, onNavigate }) => {
 
               <button
                 type="button"
-                className={`header-icon-btn ${isFav ? 'active' : ''}`}
+                className={`header-icon-btn pdp-fav-btn ${isFav ? 'active' : ''}`}
                 onClick={() => toggleFavorite(product.id)}
-                style={{ width: 48, height: 48, border: '1px solid var(--color-border)' }}
                 aria-label={isFav ? 'Retirer des favoris' : 'Ajouter aux favoris'}
               >
                 <Heart size={20} fill={isFav ? '#E11D48' : 'none'} color={isFav ? '#E11D48' : 'currentColor'} />
@@ -400,20 +400,20 @@ export const ProductDetailPage = ({ slug, onNavigate }) => {
         )}
 
         {/* Section Avis Clients */}
-        <div style={{ marginTop: 'var(--space-16)', paddingTop: 'var(--space-12)', borderTop: '1px solid var(--color-border)' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 'var(--space-8)', flexWrap: 'wrap', gap: 'var(--space-4)' }}>
+        <div className="pdp-reviews-section">
+          <div className="pdp-reviews-header">
             <div>
-              <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)' }}>
-                Transparence & Retours
+              <span className="pdp-reviews-tag">
+                Transparence &amp; Retours
               </span>
-              <h2 style={{ fontSize: 'var(--text-2xl)', fontWeight: 700, marginTop: 'var(--space-1)' }}>
+              <h2 className="pdp-reviews-title">
                 Avis clients ({product.reviewCount || product.reviews?.length || 0})
               </h2>
             </div>
 
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn btn-primary pdp-btn-review"
               onClick={() => setShowReviewModal(true)}
             >
               <MessageSquarePlus size={16} />
@@ -422,27 +422,30 @@ export const ProductDetailPage = ({ slug, onNavigate }) => {
           </div>
 
           {/* Rating Summary Box */}
-          <div style={{ backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', display: 'grid', gridTemplateColumns: '200px 1fr', gap: 'var(--space-8)', marginBottom: 'var(--space-8)' }}>
-            <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <div style={{ fontSize: 'var(--text-5xl)', fontWeight: 800, color: 'var(--color-brand-primary)', lineHeight: 1 }}>
+          <div className="pdp-rating-summary">
+            <div className="pdp-rating-score-col">
+              <div className="pdp-rating-number">
                 {product.rating}
               </div>
-              <div style={{ margin: 'var(--space-2) 0' }}>
+              <div className="pdp-rating-stars-wrap">
                 <StarRating rating={product.rating} showText={false} size={18} />
               </div>
-              <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)' }}>
+              <div className="pdp-rating-count-text">
                 Basé sur {product.reviewCount} évaluations
               </div>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 'var(--space-2)' }}>
+            <div className="pdp-rating-bars-col">
               {[5, 4, 3, 2, 1].map((stars) => (
-                <div key={stars} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', fontSize: 'var(--text-xs)' }}>
-                  <span style={{ width: 40 }}>{stars} étoiles</span>
-                  <div style={{ flexGrow: 1, height: 8, backgroundColor: 'var(--color-surface-subtle)', borderRadius: 'var(--radius-full)', overflow: 'hidden' }}>
-                    <div style={{ height: '100%', backgroundColor: 'var(--color-accent-amber)', width: stars === 5 ? '85%' : stars === 4 ? '12%' : '3%' }} />
+                <div key={stars} className="pdp-rating-bar-row">
+                  <span className="pdp-rating-bar-label">{stars} étoiles</span>
+                  <div className="pdp-rating-bar-track">
+                    <div
+                      className="pdp-rating-bar-fill"
+                      style={{ width: stars === 5 ? '85%' : stars === 4 ? '12%' : '3%' }}
+                    />
                   </div>
-                  <span style={{ width: 30, color: 'var(--color-text-muted)', textAlign: 'right' }}>
+                  <span className="pdp-rating-bar-percent">
                     {stars === 5 ? '85%' : stars === 4 ? '12%' : '3%'}
                   </span>
                 </div>
@@ -451,36 +454,28 @@ export const ProductDetailPage = ({ slug, onNavigate }) => {
           </div>
 
           {/* Reviews List */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+          <div className="pdp-reviews-list">
             {product.reviews && product.reviews.length > 0 ? (
               product.reviews.map((rev) => (
-                <div
-                  key={rev.id}
-                  style={{
-                    backgroundColor: 'var(--color-surface)',
-                    border: '1px solid var(--color-border)',
-                    borderRadius: 'var(--radius-md)',
-                    padding: 'var(--space-5)'
-                  }}
-                >
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-2)' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+                <div key={rev.id} className="pdp-review-card">
+                  <div className="pdp-review-card-header">
+                    <div className="pdp-review-author-wrap">
                       <StarRating rating={rev.rating} showText={false} />
-                      <span style={{ fontWeight: 700, fontSize: 'var(--text-sm)' }}>{rev.author}</span>
-                      <span style={{ fontSize: 'var(--text-xs)', color: 'var(--color-accent-emerald)', display: 'flex', alignItems: 'center', gap: '2px', fontWeight: 600 }}>
+                      <span className="pdp-review-author-name">{rev.author}</span>
+                      <span className="pdp-review-verified-badge">
                         <CheckCircle2 size={12} /> Achat vérifié
                       </span>
                     </div>
-                    <span style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)' }}>{rev.date}</span>
+                    <span className="pdp-review-date">{rev.date}</span>
                   </div>
-                  <h4 style={{ fontSize: 'var(--text-sm)', fontWeight: 600, marginBottom: 'var(--space-1)' }}>{rev.title}</h4>
-                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', lineHeight: 1.5 }}>
+                  <h4 className="pdp-review-title">{rev.title}</h4>
+                  <p className="pdp-review-text">
                     {rev.text}
                   </p>
                 </div>
               ))
             ) : (
-              <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)' }}>
+              <p className="pdp-reviews-empty">
                 Soyez le premier à donner votre avis sur ce produit.
               </p>
             )}
