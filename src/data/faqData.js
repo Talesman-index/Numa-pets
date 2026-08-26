@@ -3,7 +3,7 @@ export const FAQ_DATA = [
     category: 'Commandes',
     items: [
       {
-        q: 'Comment passer une commande sur le site MOKI ?',
+        q: 'Comment passer une commande sur le site NÜMA ?',
         a: 'Parcourez notre catalogue, sélectionnez les articles souhaités (tailles, coloris, formats) puis cliquez sur "Ajouter au panier". Une fois votre sélection terminée, accédez à votre panier et laissez-vous guider à travers les 3 étapes simples de paiement sécurisé.'
       },
       {
@@ -76,7 +76,7 @@ export const FAQ_DATA = [
       },
       {
         q: 'Vendez-vous des médicaments ou des aliments ?',
-        a: 'Non. MOKI a fait le choix délibéré de ne proposer ni alimentation ni médicaments vétérinaires, afin de nous concentrer à 100% sur des accessoires durables, des équipements ergonomiques et des soins d’hygiène essentiels.'
+        a: 'Non. NÜMA a fait le choix délibéré de ne proposer ni alimentation ni médicaments vétérinaires, afin de nous concentrer à 100% sur des accessoires durables, des équipements ergonomiques et des soins d’hygiène essentiels.'
       }
     ]
   },

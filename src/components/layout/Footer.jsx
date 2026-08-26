@@ -14,7 +14,7 @@ export const Footer = ({ onNavigate }) => {
       return;
     }
     setIsSubscribed(true);
-    addToast('Bienvenue dans le Club MOKI ! -10% offerts.', 'success');
+    addToast('Bienvenue dans le Club NÜMA ! -10% offerts.', 'success');
   };
 
   return (
@@ -25,11 +25,11 @@ export const Footer = ({ onNavigate }) => {
         <div className="carepaw-nl-row">
           <div className="carepaw-nl-left">
             <div className="carepaw-nl-tag">
-              <span>S'INSCRIRE ET ÉCONOMISER</span>
+              <span>LETTRE D'INFORMATION</span>
             </div>
-            <h2 className="carepaw-nl-title">Rejoignez notre Newsletter !</h2>
+            <h2 className="carepaw-nl-title">Rejoignez le Journal NÜMA</h2>
             <p className="carepaw-nl-sub">
-              Recevez nos conseils vétérinaires, nouveautés & offres exclusives
+              Recevez nos guides pratiques, conseils du quotidien et actualités NÜMA
             </p>
           </div>
 
@@ -37,7 +37,7 @@ export const Footer = ({ onNavigate }) => {
             {isSubscribed ? (
               <div className="carepaw-nl-success-pill">
                 <Check size={18} color="#10B981" />
-                <span>Merci ! Votre bon de réduction de -10% vous attend dans votre boîte mail.</span>
+                <span>Merci pour votre inscription à la lettre d'information NÜMA !</span>
               </div>
             ) : (
               <form className="carepaw-nl-form" onSubmit={handleNewsletterSubmit}>
@@ -70,10 +70,10 @@ export const Footer = ({ onNavigate }) => {
               <div className="carepaw-logo-paw">
                 <PawPrint size={24} fill="#FFAE01" color="#FFAE01" />
               </div>
-              <span className="carepaw-logo-text">MOKI</span>
+              <span className="carepaw-logo-text">NÜMA</span>
             </div>
             <p className="carepaw-brand-bio">
-              Chez MOKI, nous concevons une sélection courte de 15 à 20 indispensables (équipements, accessoires et soins d'hygiène) pour garder vos animaux sains, heureux et aimés comme des membres de la famille.
+              Chez NÜMA, nous proposons une sélection courte de 18 indispensables (équipements, accessoires et soins d'hygiène) pensés pour faciliter le quotidien de vos chiens et chats.
             </p>
           </div>
 
@@ -83,9 +83,9 @@ export const Footer = ({ onNavigate }) => {
             <ul className="carepaw-nav-list">
               <li><button type="button" onClick={() => onNavigate && onNavigate('a-propos')}>À propos</button></li>
               <li><button type="button" onClick={() => onNavigate && onNavigate('nos-essentiels')}>Nos Essentiels</button></li>
-              <li><button type="button" onClick={() => onNavigate && onNavigate('conseils')}>Le Journal & Conseils</button></li>
-              <li><button type="button" onClick={() => onNavigate && onNavigate('nos-essentiels')}>Abonnements & Tarifs</button></li>
-              <li><button type="button" onClick={() => onNavigate && onNavigate('faq')}>FAQ & Aide</button></li>
+              <li><button type="button" onClick={() => onNavigate && onNavigate('conseils')}>Le Journal &amp; Conseils</button></li>
+              <li><button type="button" onClick={() => onNavigate && onNavigate('nos-essentiels')}>Abonnements &amp; Tarifs</button></li>
+              <li><button type="button" onClick={() => onNavigate && onNavigate('faq')}>FAQ &amp; Aide</button></li>
             </ul>
           </div>
 
@@ -103,13 +103,13 @@ export const Footer = ({ onNavigate }) => {
                 </div>
               </a>
 
-              <a href="mailto:contact@moki-pets.fr" className="carepaw-contact-row">
+              <a href="mailto:contact@numa-pets.fr" className="carepaw-contact-row">
                 <div className="carepaw-contact-icon-box">
                   <Mail size={16} />
                 </div>
                 <div className="carepaw-contact-text">
                   <span className="contact-label">Email</span>
-                  <strong className="contact-value">contact@moki-pets.fr</strong>
+                  <strong className="contact-value">contact@numa-pets.fr</strong>
                 </div>
               </a>
 
@@ -119,7 +119,7 @@ export const Footer = ({ onNavigate }) => {
                 </div>
                 <div className="carepaw-contact-text">
                   <span className="contact-label">Localisation</span>
-                  <strong className="contact-value">Lyon & Paris, France</strong>
+                  <strong className="contact-value">Lyon &amp; Paris, France</strong>
                 </div>
               </div>
             </div>
@@ -153,7 +153,7 @@ export const Footer = ({ onNavigate }) => {
               </a>
 
               {/* Cat Paw / Community icon */}
-              <a href="#/a-propos" className="carepaw-social-btn" aria-label="Club MOKI">
+              <a href="#/a-propos" className="carepaw-social-btn" aria-label="Club NÜMA">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-5 4c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-5 4c-2.76 0-5 2.24-5 5 0 2.45 1.76 4.47 4.08 4.91L12 22l1.92-2.09C16.24 19.47 18 17.45 18 15c0-2.76-2.24-5-5-5z"/>
                 </svg>
@@ -166,7 +166,7 @@ export const Footer = ({ onNavigate }) => {
         {/* 4. BOTTOM COPYRIGHT & LEGAL BAR */}
         <div className="carepaw-bottom-bar">
           <div className="carepaw-copyright">
-            © Copyright {new Date().getFullYear()}, Tous droits réservés par <strong>MOKI Pets France</strong>
+            © Copyright {new Date().getFullYear()}, Tous droits réservés par <strong>NÜMA Pets France</strong>
           </div>
           <div className="carepaw-legal-links">
             <button type="button" onClick={() => onNavigate && onNavigate('a-propos')}>Politique de Confidentialité</button>

@@ -633,11 +633,35 @@ input, select, textarea {
 .top-amber-announcement {
   background-color: #4E0000;
   color: #FFAE01;
-  padding: 7px 0;
+  padding: 7px 36px 7px 12px;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.04em;
+  position: relative;
   overflow: hidden;
+}
+
+.top-amber-close-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #FFAE01;
+  opacity: 0.75;
+  cursor: pointer;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  transition: opacity var(--transition-fast), background-color var(--transition-fast);
+}
+
+.top-amber-close-btn:hover {
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 .top-amber-inner {
@@ -1104,7 +1128,8 @@ input, select, textarea {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-bottom: 40px;
+  padding-bottom: 0;
+  transform: translateY(-40px);
 }
 
 .paws-sunburst-badge {
@@ -1361,6 +1386,7 @@ input, select, textarea {
   justify-content: center;
   position: relative;
   z-index: 10;
+  transform: translateY(-40px);
 }
 
 .paws-hero-packs-wrap {
@@ -1659,8 +1685,8 @@ input, select, textarea {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: var(--space-12);
-  align-items: center;
-  margin-bottom: var(--space-14);
+  align-items: start;
+  margin-bottom: var(--space-16);
 }
 
 .paws-sub-reassurance-row {
@@ -1668,6 +1694,7 @@ input, select, textarea {
   flex-direction: column;
   gap: var(--space-3);
   margin-top: var(--space-6);
+  margin-bottom: var(--space-4);
 }
 
 .sub-reassurance-item {
@@ -1712,6 +1739,8 @@ input, select, textarea {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-8);
+  margin-top: var(--space-6);
+  padding-top: 16px;
 }
 
 .paws-pricing-card {
@@ -2085,17 +2114,21 @@ input, select, textarea {
 
 .paws-finder-img-wrap {
   height: 100%;
+  min-height: 380px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #222222;
-  padding: 24px;
+  background-color: #FAF3E7;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
 }
 
 .paws-finder-img {
-  max-height: 280px;
-  width: auto;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  max-height: 440px;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .paws-finder-content {
@@ -2502,19 +2535,23 @@ input, select, textarea {
 
 .paws-newsletter-btn {
   background-color: #FFAE01;
-  color: #FFFFFF;
-  padding: 12px 22px;
+  color: #4E0000;
+  padding: 12px 24px;
   border-radius: var(--radius-full);
-  font-weight: 700;
+  font-weight: 800;
   font-size: var(--text-sm);
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(255, 174, 1, 0.4);
   transition: all var(--transition-fast);
 }
 
 .paws-newsletter-btn:hover {
   background-color: #F09E00;
+  transform: translateY(-1px);
 }
 
 .paws-newsletter-terms {
@@ -3687,11 +3724,13 @@ input, select, textarea {
   .paws-hero-left {
     align-items: flex-start;
     padding-bottom: 0;
+    transform: translateY(-15px);
   }
   .paws-hero-right {
     grid-column: 1 / -1;
     justify-content: center;
     margin-top: 20px;
+    transform: translateY(0);
   }
   .paws-story-grid,
   .paws-sub-header-grid,
@@ -3743,6 +3782,7 @@ input, select, textarea {
   .paws-hero-left {
     align-items: center;
     text-align: center;
+    transform: translateY(0);
   }
   .paws-hero-right {
     display: none;

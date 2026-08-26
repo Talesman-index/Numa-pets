@@ -52,7 +52,7 @@ export const AdminPage = ({ onNavigate }) => {
     price: 29.90,
     stockQuantity: 50,
     description: '',
-    images: ['https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=800&q=80']
+    imagesInput: '/images/product-poop-bag-dispenser-1.png'
   });
 
   // Promo Code Add Form
@@ -81,13 +81,14 @@ export const AdminPage = ({ onNavigate }) => {
       price: 29.90,
       stockQuantity: 50,
       description: 'Conçu avec soin pour le bien-être de votre animal.',
-      images: ['https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=800&q=80']
+      imagesInput: '/images/product-poop-bag-dispenser-1.png'
     });
     setShowProductModal(true);
   };
 
   const handleOpenEditProduct = (prod) => {
     setEditingProduct(prod);
+    const existingImages = Array.isArray(prod.images) ? prod.images.join(', ') : (prod.images || '');
     setProductForm({
       title: prod.title,
       subtitle: prod.subtitle,
@@ -96,8 +97,8 @@ export const AdminPage = ({ onNavigate }) => {
       categoryLabel: prod.categoryLabel,
       price: prod.price,
       stockQuantity: prod.stockQuantity,
-      description: prod.description,
-      images: prod.images
+      description: prod.description || '',
+      imagesInput: existingImages
     });
     setShowProductModal(true);
   };
@@ -109,19 +110,29 @@ export const AdminPage = ({ onNavigate }) => {
       return;
     }
 
+    const parsedImages = productForm.imagesInput
+      ? productForm.imagesInput.split(',').map((s) => s.trim()).filter(Boolean)
+      : ['/images/hero-golden-duo.jpg'];
+
+    const productPayload = {
+      title: productForm.title,
+      subtitle: productForm.subtitle,
+      animal: productForm.animal,
+      category: productForm.category,
+      categoryLabel: productForm.categoryLabel,
+      description: productForm.description,
+      images: parsedImages.length > 0 ? parsedImages : ['/images/hero-golden-duo.jpg'],
+      price: Number(productForm.price),
+      stockQuantity: Number(productForm.stockQuantity)
+    };
+
     if (editingProduct) {
       adminUpdateProduct({
         ...editingProduct,
-        ...productForm,
-        price: Number(productForm.price),
-        stockQuantity: Number(productForm.stockQuantity)
+        ...productPayload
       });
     } else {
-      adminAddProduct({
-        ...productForm,
-        price: Number(productForm.price),
-        stockQuantity: Number(productForm.stockQuantity)
-      });
+      adminAddProduct(productPayload);
     }
     setShowProductModal(false);
   };
@@ -149,7 +160,7 @@ export const AdminPage = ({ onNavigate }) => {
       <div style={{ backgroundColor: '#1E293B', color: '#F8FAFC', padding: 'var(--space-2) var(--space-6)', fontSize: 'var(--text-xs)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
           <span style={{ width: 8, height: 8, borderRadius: 'var(--radius-full)', backgroundColor: '#10B981', display: 'inline-block' }} />
-          <strong>Administration MOKI</strong> — Mode Gestion Directe Active
+          <strong>Administration NÜMA</strong> — Mode Gestion Directe Active
         </div>
         <button
           type="button"
@@ -251,7 +262,7 @@ export const AdminPage = ({ onNavigate }) => {
           {activeAdminTab === 'dashboard' && (
             <div>
               <h1 style={{ fontSize: 'var(--text-2xl)', fontWeight: 800, marginBottom: 'var(--space-6)' }}>
-                Vue synthétique de l’activité MOKI
+                Vue synthétique de l’activité NÜMA
               </h1>
 
               {/* KPI Cards */}
@@ -260,7 +271,7 @@ export const AdminPage = ({ onNavigate }) => {
                   <div className="stat-label">Chiffre d’affaires total</div>
                   <div className="stat-val">{totalRevenue.toFixed(2)} €</div>
                   <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-accent-emerald)', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '2px' }}>
-                    <TrendingUp size={13} /> Ventes directes MOKI
+                    <TrendingUp size={13} /> Ventes directes NÜMA
                   </div>
                 </div>
 
@@ -351,7 +362,7 @@ export const AdminPage = ({ onNavigate }) => {
                         <td style={{ fontWeight: 700 }}>{o.id}</td>
                         <td>
                           <div style={{ fontWeight: 600 }}>
-                            {o.customer ? `${o.customer.firstName} ${o.customer.lastName}` : 'Client MOKI'}
+                            {o.customer ? `${o.customer.firstName} ${o.customer.lastName}` : 'Client NÜMA'}
                           </div>
                           <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)' }}>
                             {o.customer?.email || 'client@example.com'}
@@ -385,7 +396,7 @@ export const AdminPage = ({ onNavigate }) => {
           {activeAdminTab === 'products' && (
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-6)' }}>
-                <h1 style={{ fontSize: 'var(--text-2xl)', fontWeight: 800 }}>Catalogue Produits MOKI ({products.length})</h1>
+                <h1 style={{ fontSize: 'var(--text-2xl)', fontWeight: 800 }}>Catalogue Produits NÜMA ({products.length})</h1>
                 <button type="button" className="btn btn-primary" onClick={handleOpenAddProduct}>
                   <Plus size={16} />
                   <span>Ajouter un produit</span>
@@ -640,7 +651,7 @@ export const AdminPage = ({ onNavigate }) => {
           {activeAdminTab === 'content' && (
             <div>
               <h1 style={{ fontSize: 'var(--text-2xl)', fontWeight: 800, marginBottom: 'var(--space-6)' }}>
-                Articles du Journal MOKI
+                Articles du Journal NÜMA
               </h1>
 
               <div style={{ backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
@@ -801,6 +812,40 @@ export const AdminPage = ({ onNavigate }) => {
                     required
                   />
                 </div>
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Images du produit (chemins ou URLs séparés par des virgules)</label>
+                <input
+                  type="text"
+                  className="form-input"
+                  placeholder="/images/product-poop-bag-dispenser-1.png, /images/product-poop-bag-dispenser-2.jpg"
+                  value={productForm.imagesInput}
+                  onChange={(e) => setProductForm({ ...productForm, imagesInput: e.target.value })}
+                />
+                <span style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginTop: '4px', display: 'block' }}>
+                  Exemple : <code>/images/product-poop-bag-dispenser-1.png</code> ou une URL web Unsplash.
+                </span>
+
+                {/* Live Preview */}
+                {productForm.imagesInput && (
+                  <div style={{ display: 'flex', gap: 'var(--space-2)', marginTop: 'var(--space-2)', flexWrap: 'wrap' }}>
+                    {productForm.imagesInput
+                      .split(',')
+                      .map((s) => s.trim())
+                      .filter(Boolean)
+                      .map((imgSrc, idx) => (
+                        <div key={idx} style={{ position: 'relative', width: 48, height: 48, borderRadius: 'var(--radius-sm)', overflow: 'hidden', border: '1px solid var(--color-border)' }}>
+                          <img
+                            src={imgSrc}
+                            alt="Aperçu"
+                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                            onError={(e) => { e.target.src = '/images/hero-golden-duo.jpg'; }}
+                          />
+                        </div>
+                      ))}
+                  </div>
+                )}
               </div>
 
               <div className="form-group">

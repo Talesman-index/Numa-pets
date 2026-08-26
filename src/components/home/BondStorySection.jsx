@@ -12,7 +12,7 @@ export const BondStorySection = ({ onNavigate }) => {
             <div className="paws-story-shape-bg">
               <img
                 src="/images/hero-vet-dog.jpg"
-                alt="Expertise et bienveillance MOKI"
+                alt="Expertise et bienveillance NÜMA"
                 className="paws-story-img"
               />
             </div>
@@ -23,8 +23,8 @@ export const BondStorySection = ({ onNavigate }) => {
                 <Sparkles size={16} />
               </div>
               <div className="floating-tag-content">
-                <span className="floating-tag-title">Formulé avec Soin</span>
-                <span className="floating-tag-sub">Approuvé par des vétérinaires</span>
+                <span className="floating-tag-title">Sélection Maîtrisée</span>
+                <span className="floating-tag-sub">Pensée pour leur bien-être</span>
               </div>
             </div>
           </div>
@@ -41,7 +41,7 @@ export const BondStorySection = ({ onNavigate }) => {
             </h2>
 
             <p className="paws-section-lead">
-              Nous avons fait le choix radical d’un catalogue resserré de 15 à 20 essentiels. Ni alimentation, ni médicaments : uniquement des accessoires ergonomiques et des soins d'hygiène sains, conçus pour durer.
+              Nous avons fait le choix d’une sélection volontairement courte de 18 essentiels. Ni alimentation, ni médicaments : uniquement des accessoires ergonomiques, des équipements pratiques et des soins d'hygiène doux.
             </p>
 
             <div className="paws-story-checklist">
@@ -51,7 +51,7 @@ export const BondStorySection = ({ onNavigate }) => {
                 </div>
                 <div>
                   <strong>Sélection 100% Utile</strong>
-                  <p>Fini les dizaines de gadgets inutiles. Chaque produit répond à un besoin vital du quotidien.</p>
+                  <p>Pas de superflu. Chaque produit répond à un usage concret du quotidien (promenade, soin, jeu, repos).</p>
                 </div>
               </div>
 
@@ -60,8 +60,8 @@ export const BondStorySection = ({ onNavigate }) => {
                   <Check size={14} />
                 </div>
                 <div>
-                  <strong>Formules Douces & Testées</strong>
-                  <p>Shampoings, lingettes et baumes sans alcool, sans parabènes, respectant le pH cutané.</p>
+                  <strong>Formules Saines &amp; Respectueuses</strong>
+                  <p>Shampoings, lingettes et baumes sans alcool, sans parabènes, respectant le pH physiologique de l'animal.</p>
                 </div>
               </div>
 
@@ -70,8 +70,8 @@ export const BondStorySection = ({ onNavigate }) => {
                   <Check size={14} />
                 </div>
                 <div>
-                  <strong>Vente Directe sans Intermédiaire</strong>
-                  <p>Le meilleur rapport qualité/prix garanti par un circuit court depuis nos ateliers partenaires.</p>
+                  <strong>Vente Directe &amp; Transparence</strong>
+                  <p>Un modèle sans intermédiaire pour proposer une offre claire et accessible.</p>
                 </div>
               </div>
             </div>

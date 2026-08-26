@@ -4,13 +4,13 @@ import { INITIAL_PRODUCTS } from '../data/products';
 const StoreContext = createContext();
 
 const STORAGE_KEYS = {
-  PRODUCTS: 'moki_products_v7',
-  CART: 'moki_cart_v2',
-  FAVORITES: 'moki_favs_v2',
-  ORDERS: 'moki_orders_v2',
-  SUBSCRIPTIONS: 'moki_subs_v2',
-  USER: 'moki_user_v2',
-  DISCOUNTS: 'moki_discounts_v2'
+  PRODUCTS: 'numa_products_v1',
+  CART: 'numa_cart_v1',
+  FAVORITES: 'numa_favs_v1',
+  ORDERS: 'numa_orders_v1',
+  SUBSCRIPTIONS: 'numa_subs_v1',
+  USER: 'numa_user_v1',
+  DISCOUNTS: 'numa_discounts_v1'
 };
 
 const DEFAULT_USER = {
@@ -33,7 +33,7 @@ const DEFAULT_USER = {
 
 const DEFAULT_ORDERS = [
   {
-    id: 'MOKI-84920',
+    id: 'NUMA-84920',
     date: '10/02/2026',
     status: 'Livrée',
     statusTag: 'delivered',
@@ -86,7 +86,7 @@ const DEFAULT_SUBSCRIPTIONS = [
     productId: 'prod-dog-8',
     title: 'Distributeur compact + 80 sacs à déjections',
     format: 'Recharge 8 rouleaux (160 sacs)',
-    image: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80',
+    image: '/images/product-poop-bag-dispenser-1.png',
     price: 10.70,
     frequency: 'Chaque mois',
     nextDelivery: '15/03/2026',
@@ -95,6 +95,8 @@ const DEFAULT_SUBSCRIPTIONS = [
 ];
 
 const DEFAULT_DISCOUNTS = [
+  { code: 'NUMA10', type: 'percent', value: 10, minOrder: 0, description: '10% de réduction immédiate de bienvenue' },
+  { code: 'NUMA20', type: 'percent', value: 20, minOrder: 60, description: '20% dès 60 € d’achat' },
   { code: 'MOKI10', type: 'percent', value: 10, minOrder: 0, description: '10% de réduction immédiate de bienvenue' },
   { code: 'MOKI20', type: 'percent', value: 20, minOrder: 60, description: '20% dès 60 € d’achat' },
   { code: 'LIVRAISON', type: 'free_shipping', value: 0, minOrder: 0, description: 'Frais de port offerts sans minimum' }
@@ -107,20 +109,25 @@ export const StoreProvider = ({ children }) => {
     if (!saved) return INITIAL_PRODUCTS;
     try {
       const parsed = JSON.parse(saved);
-      // Merge initial products images & titles with any customized stock/price
-      return INITIAL_PRODUCTS.map((initProd) => {
+      // Merge initial products images & data with any customized stock/price
+      const mergedInitial = INITIAL_PRODUCTS.map((initProd) => {
         const existing = parsed.find((p) => p.id === initProd.id);
         if (existing) {
           return {
-            ...existing,
-            title: initProd.title,
-            subtitle: initProd.subtitle,
-            images: initProd.images,
-            categoryLabel: initProd.categoryLabel
+            ...initProd,
+            stockQuantity: typeof existing.stockQuantity === 'number' ? existing.stockQuantity : initProd.stockQuantity,
+            price: typeof existing.price === 'number' ? existing.price : initProd.price,
+            inStock: typeof existing.inStock === 'boolean' ? existing.inStock : initProd.inStock,
+            reviews: existing.reviews || initProd.reviews,
+            rating: existing.rating || initProd.rating,
+            reviewCount: existing.reviewCount || initProd.reviewCount
           };
         }
         return initProd;
       });
+
+      const customProducts = parsed.filter((p) => !INITIAL_PRODUCTS.some((init) => init.id === p.id));
+      return [...mergedInitial, ...customProducts];
     } catch {
       return INITIAL_PRODUCTS;
     }
@@ -328,7 +335,7 @@ export const StoreProvider = ({ children }) => {
 
   // Order Placement
   const placeOrder = (orderData) => {
-    const orderId = `MOKI-${Math.floor(10000 + Math.random() * 90000)}`;
+    const orderId = `NUMA-${Math.floor(10000 + Math.random() * 90000)}`;
     const newOrder = {
       id: orderId,
       date: new Date().toLocaleDateString('fr-FR'),
@@ -415,6 +422,85 @@ export const StoreProvider = ({ children }) => {
   };
 
   // Back-office Admin Methods
+  const adminAddProduct = (newProduct) => {
+    const id = `prod-${Date.now()}`;
+    const slug = (newProduct.title || 'nouveau-produit')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)+/g, '');
+
+    const formattedImages = Array.isArray(newProduct.images)
+      ? newProduct.images
+      : (typeof newProduct.images === 'string' && newProduct.images.trim()
+          ? newProduct.images.split(',').map((s) => s.trim()).filter(Boolean)
+          : ['/images/hero-golden-duo.jpg']);
+
+    const fullProduct = {
+      id,
+      slug,
+      title: newProduct.title,
+      subtitle: newProduct.subtitle || '',
+      animal: newProduct.animal || 'dog',
+      category: newProduct.category || 'walk',
+      categoryLabel: newProduct.categoryLabel || 'Promenade',
+      need: newProduct.need || (newProduct.animal === 'dog' ? 'Sortir' : 'Prendre soin'),
+      price: parseFloat(newProduct.price) || 0,
+      subscriptionPrice: parseFloat((parseFloat(newProduct.price) * 0.9).toFixed(2)) || 0,
+      rating: 5.0,
+      reviewCount: 1,
+      inStock: (parseInt(newProduct.stockQuantity, 10) || 0) > 0,
+      stockQuantity: parseInt(newProduct.stockQuantity, 10) || 0,
+      isBestSeller: Boolean(newProduct.isBestSeller),
+      isEssential: Boolean(newProduct.isEssential),
+      isNew: true,
+      isRecurring: Boolean(newProduct.isRecurring),
+      images: formattedImages.length > 0 ? formattedImages : ['/images/hero-golden-duo.jpg'],
+      variants: newProduct.variants || [
+        { id: 'size', name: 'Format', options: ['Standard'] }
+      ],
+      description: newProduct.description || '',
+      highlights: newProduct.highlights || ['Formule et fabrication de haute qualité'],
+      howToUse: newProduct.howToUse || 'À utiliser selon les besoins de votre animal.',
+      materials: newProduct.materials || 'Matériaux certifiés et testés vétérinairement.',
+      safetyInfo: newProduct.safetyInfo || 'Convient pour un usage régulier.',
+      shippingInfo: 'Expédié sous 24h depuis la France.',
+      crossSellIds: ['prod-dog-1', 'prod-dog-2'],
+      reviews: []
+    };
+
+    setProducts((prev) => [fullProduct, ...prev]);
+    addToast(`Produit "${fullProduct.title}" ajouté avec succès !`, 'success');
+  };
+
+  const adminUpdateProduct = (updatedProduct) => {
+    const formattedImages = Array.isArray(updatedProduct.images)
+      ? updatedProduct.images
+      : (typeof updatedProduct.images === 'string' && updatedProduct.images.trim()
+          ? updatedProduct.images.split(',').map((s) => s.trim()).filter(Boolean)
+          : ['/images/hero-golden-duo.jpg']);
+
+    setProducts((prev) =>
+      prev.map((p) =>
+        p.id === updatedProduct.id
+          ? {
+              ...p,
+              ...updatedProduct,
+              images: formattedImages.length > 0 ? formattedImages : p.images,
+              inStock: (parseInt(updatedProduct.stockQuantity, 10) || 0) > 0
+            }
+          : p
+      )
+    );
+    addToast(`Produit "${updatedProduct.title}" mis à jour !`, 'success');
+  };
+
+  const adminDeleteProduct = (productId) => {
+    setProducts((prev) => prev.filter((p) => p.id !== productId));
+    addToast('Produit supprimé du catalogue.');
+  };
+
   const updateProductStock = (productId, newStock) => {
     setProducts((prev) =>
       prev.map((p) => (p.id === productId ? { ...p, stockQuantity: newStock, inStock: newStock > 0 } : p))
@@ -536,6 +622,12 @@ export const StoreProvider = ({ children }) => {
         placeOrder,
         cancelSubscription,
         pauseSubscription,
+        adminAddProduct,
+        adminUpdateProduct,
+        adminDeleteProduct,
+        adminUpdateOrderStatus: updateOrderStatus,
+        adminAddDiscount: addDiscountCode,
+        adminDeleteDiscount: deleteDiscountCode,
         updateProductStock,
         updateProductPrice,
         updateOrderStatus,

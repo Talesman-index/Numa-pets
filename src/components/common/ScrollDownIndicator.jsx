@@ -17,7 +17,7 @@ export const ScrollDownIndicator = ({ targetId = 'histoire-section' }) => {
         type="button"
         className="sdi-pill-btn"
         onClick={handleClick}
-        aria-label="Défiler pour explorer l'univers MOKI"
+        aria-label="Défiler pour explorer l'univers NÜMA"
       >
         {/* Animated gliding track with glowing bead */}
         <div className="sdi-track">

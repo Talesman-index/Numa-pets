@@ -5,9 +5,9 @@ import { Search, Truck, CheckCircle2, Clock, Package, MapPin, AlertCircle } from
 
 export const OrderTrackingPage = ({ trackingId, onNavigate }) => {
   const { orders } = useStore();
-  const [query, setQuery] = useState(trackingId || 'MOKI-84920');
+  const [query, setQuery] = useState(trackingId || 'NUMA-84920');
   const [searchedOrder, setSearchedOrder] = useState(() => {
-    return orders.find((o) => o.id === (trackingId || 'MOKI-84920')) || orders[0] || null;
+    return orders.find((o) => o.id === (trackingId || 'NUMA-84920') || o.id === 'MOKI-84920') || orders[0] || null;
   });
   const [searched, setSearched] = useState(true);
 
@@ -32,10 +32,10 @@ export const OrderTrackingPage = ({ trackingId, onNavigate }) => {
             Expéditions en direct
           </span>
           <h1 style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)', fontWeight: 800, color: 'var(--color-brand-primary)', marginTop: 'var(--space-1)', marginBottom: 'var(--space-2)' }}>
-            Suivre mon colis MOKI
+            Suivre mon colis NÜMA
           </h1>
           <p style={{ fontSize: 'var(--text-base)', color: 'var(--color-text-secondary)', maxWidth: 540, margin: '0 auto' }}>
-            Indiquez votre numéro de commande (ex: MOKI-84920) pour visualiser les étapes d’acheminement en temps réel.
+            Indiquez votre numéro de commande (ex: NUMA-84920) pour visualiser les étapes d’acheminement en temps réel.
           </p>
         </div>
 
@@ -44,7 +44,7 @@ export const OrderTrackingPage = ({ trackingId, onNavigate }) => {
           <input
             type="text"
             className="form-input"
-            placeholder="Numéro de commande (ex: MOKI-84920)"
+            placeholder="Numéro de commande (ex: NUMA-84920)"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             style={{ fontSize: 'var(--text-sm)' }}

@@ -9,8 +9,8 @@ export const HeroSection = ({ onNavigate }) => {
         {/* 1. Titre Géant */}
         <div className="paws-hero-headline-wrap reveal-up">
           <h1 className="paws-hero-title">
-            <span className="paws-title-dark">Le Confort &amp; le Soin</span>
-            <span className="paws-title-orange">Pensés Pour Chiens &amp; Chats</span>
+            <span className="paws-title-dark">Les essentiels pensés</span>
+            <span className="paws-title-orange">pour chiens &amp; chats.</span>
           </h1>
         </div>
 
@@ -33,11 +33,11 @@ export const HeroSection = ({ onNavigate }) => {
             </div>
 
             <h2 className="paws-left-title">
-              Sélection Courte,<br />Qualité Durable.
+              Sélection Courte,<br />Utile &amp; Maîtrisée.
             </h2>
 
             <p className="paws-left-desc">
-              Équipements, accessoires et soins essentiels. Conçus avec soin, vendus en direct pour le bien-être de vos animaux.
+              Soin, promenade, jeu et confort : une sélection courte d’essentiels choisis pour leur quotidien. Vente directe et sans superflu.
             </p>
 
             <button
@@ -45,7 +45,7 @@ export const HeroSection = ({ onNavigate }) => {
               className="paws-btn-shop-now"
               onClick={() => onNavigate('nos-essentiels')}
             >
-              <span>Découvrir la gamme</span>
+              <span>Découvrir la sélection</span>
               <div className="paws-btn-arrow-circle">
                 <ArrowUpRight size={14} />
               </div>
@@ -57,7 +57,7 @@ export const HeroSection = ({ onNavigate }) => {
             <div className="paws-center-composition">
               <img
                 src="/images/hero-woman-dog.png"
-                alt="MOKI - Confort et soin pour chiens et chats"
+                alt="NÜMA - Essentiels pour chiens et chats"
                 className="paws-center-visual"
               />
             </div>
@@ -74,16 +74,16 @@ export const HeroSection = ({ onNavigate }) => {
             >
               <div className="paws-hero-packs-badge">
                 <Leaf size={14} color="#047857" />
-                <span>Formules 100% Saines</span>
+                <span>Formules Saines &amp; Douces</span>
               </div>
               <img
                 src="/images/product-packs-trio.png"
-                alt="Packs et emballages de produits MOKI"
+                alt="Packs et essentiels NÜMA"
                 className="paws-hero-packs-img"
               />
               <div className="paws-hero-packs-caption">
                 <strong>Nos Gammes &amp; Packs Essentiels</strong>
-                <span>-10% en livraison récurrente libre</span>
+                <span>Livraison récurrente disponible</span>
               </div>
             </div>
           </div>

@@ -76,20 +76,20 @@ export const RecurringSubscriptionTeaser = ({ onNavigate }) => {
         <div className="paws-sub-header-grid">
           <div>
             <div className="paws-section-badge">
-              <span>ABONNEMENT SANS ENGAGEMENT</span>
+              <span>LIVRAISON AUTOMATIQUE</span>
             </div>
             <h2 className="paws-section-title">
               Vos indispensables,<br />
               <span style={{ color: 'var(--color-brand-primary)' }}>automatiquement renouvelés.</span>
             </h2>
             <p className="paws-section-lead">
-              Évitez les pannes de sacs, shampoings ou lingettes. Profitez de <strong>-10% d'économie permanente</strong> et de la livraison offerte sur toutes vos recharges.
+              Recevez vos consommables du quotidien (shampoings, lingettes, sacs à déjections, soins) à la fréquence de votre choix, sans rupture et sans engagement.
             </p>
 
             <div className="paws-sub-reassurance-row">
               <div className="sub-reassurance-item">
                 <RefreshCw size={16} color="var(--color-brand-primary)" />
-                <span>Fréquence au choix (1 à 3 mois)</span>
+                <span>Fréquence au choix (4 sem. à 3 mois)</span>
               </div>
               <div className="sub-reassurance-item">
                 <Clock size={16} color="var(--color-brand-primary)" />
@@ -97,7 +97,7 @@ export const RecurringSubscriptionTeaser = ({ onNavigate }) => {
               </div>
               <div className="sub-reassurance-item">
                 <ShieldCheck size={16} color="var(--color-brand-primary)" />
-                <span>Livraison offerte dès 20 €</span>
+                <span>Expédition directe depuis la France</span>
               </div>
             </div>
           </div>
@@ -106,11 +106,11 @@ export const RecurringSubscriptionTeaser = ({ onNavigate }) => {
           <div className="paws-sub-img-box">
             <img
               src="/images/product-packs-trio.png"
-              alt="Packs d'entretien et de soin MOKI"
+              alt="Packs d'entretien et de soin NÜMA"
               className="paws-sub-product-img"
             />
             <div className="paws-sub-badge-float">
-              <span>ÉCONOMISEZ 10% À CHAQUE LIVRAISON</span>
+              <span>LIVRAISON RÉCURRENTE SANS ENGAGEMENT</span>
             </div>
           </div>
         </div>

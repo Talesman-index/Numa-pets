@@ -25,7 +25,7 @@ export const FaqPage = ({ onNavigate }) => {
       return;
     }
     setContactSubmitted(true);
-    addToast('Votre message a bien été transmis à l’équipe MOKI', 'success');
+    addToast('Votre message a bien été transmis à l’équipe NÜMA', 'success');
   };
 
   const filteredCategories = FAQ_DATA.map((cat) => {

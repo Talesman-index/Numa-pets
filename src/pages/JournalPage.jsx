@@ -21,7 +21,7 @@ export const JournalPage = ({ onNavigate }) => {
   return (
     <div className="section" style={{ paddingTop: 'var(--space-6)', backgroundColor: '#FAF6ED' }}>
       <div className="container">
-        <Breadcrumbs items={[{ label: 'Le Journal MOKI' }]} onNavigate={onNavigate} />
+        <Breadcrumbs items={[{ label: 'Le Journal NÜMA' }]} onNavigate={onNavigate} />
 
         {/* Hero Header Journal */}
         <div className="reveal-up" style={{ backgroundColor: '#4E0000', border: '1px solid rgba(255,174,1,0.25)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-12) var(--space-8)', textAlign: 'center', marginBottom: 'var(--space-10)', boxShadow: 'var(--shadow-md)', color: '#FFFFFF' }}>
@@ -29,7 +29,7 @@ export const JournalPage = ({ onNavigate }) => {
             <span>GUIDES &amp; CONSEILS VÉTÉRINAIRES</span>
           </div>
           <h1 className="paws-section-title" style={{ fontSize: 'clamp(2.4rem, 4.5vw, 3.5rem)', color: '#FFFFFF', marginBottom: 'var(--space-3)' }}>
-            Le Journal MOKI
+            Le Journal NÜMA
           </h1>
           <p className="paws-section-lead" style={{ margin: '0 auto', fontSize: '1.05rem', color: 'rgba(255,255,255,0.8)' }}>
             Des conseils concrets, sans jargon et rédigés avec des professionnels pour accompagner le quotidien, le confort et le soin de votre animal.

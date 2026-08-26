@@ -6,7 +6,7 @@ export const AboutPage = ({ onNavigate }) => {
   return (
     <div className="section" style={{ paddingTop: 'var(--space-6)', backgroundColor: '#FAF6ED' }}>
       <div className="container" style={{ maxWidth: 920 }}>
-        <Breadcrumbs items={[{ label: 'À propos de MOKI' }]} onNavigate={onNavigate} />
+        <Breadcrumbs items={[{ label: 'À propos de NÜMA' }]} onNavigate={onNavigate} />
 
         {/* Hero Section Manifeste */}
         <div className="reveal-up" style={{ textAlign: 'center', marginBottom: 'var(--space-12)', backgroundColor: '#4E0000', border: '1px solid rgba(255,174,1,0.25)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-12) var(--space-8)', boxShadow: 'var(--shadow-md)', color: '#FFFFFF' }}>
@@ -24,13 +24,13 @@ export const AboutPage = ({ onNavigate }) => {
         {/* Section 1: Notre Histoire & Constat */}
         <div className="reveal-left" style={{ backgroundColor: '#FFFFFF', border: '1px solid rgba(0,0,0,0.06)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-10)', marginBottom: 'var(--space-8)', boxShadow: 'var(--shadow-sm)' }}>
           <h2 style={{ fontFamily: 'var(--font-serif-display)', fontSize: '1.8rem', color: '#141414', marginBottom: 'var(--space-4)' }}>
-            Pourquoi MOKI existe ?
+            Pourquoi NÜMA existe ?
           </h2>
           <p style={{ fontSize: '1.05rem', color: 'var(--color-text-secondary)', lineHeight: 1.8, marginBottom: 'var(--space-4)' }}>
             L’animalerie traditionnelle regorge de milliers de références souvent superflues, d’accessoires fragiles et de formules de soin complexes dont on ignore la réelle utilité.
           </p>
           <p style={{ fontSize: '1.05rem', color: 'var(--color-text-secondary)', lineHeight: 1.8 }}>
-            <strong>MOKI est née d’une volonté simple :</strong> simplifier radicalement la vie des maîtres en se concentrant sur un catalogue restreint de 15 à 20 essentiels ultra-qualitatifs. Nous ne vendons <strong>ni alimentation ni médicaments</strong>, uniquement ce qui compte pour la promenade, l’hygiène douce, le jeu autonome et le confort de repos.
+            <strong>NÜMA est née d’une volonté simple :</strong> simplifier radicalement la vie des maîtres en se concentrant sur un catalogue restreint de 15 à 20 essentiels ultra-qualitatifs. Nous ne vendons <strong>ni alimentation ni médicaments</strong>, uniquement ce qui compte pour la promenade, l’hygiène douce, le jeu autonome et le confort de repos.
           </p>
         </div>
 

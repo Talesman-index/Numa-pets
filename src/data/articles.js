@@ -8,7 +8,7 @@ export const ARTICLES = [
     categoryTag: 'dog',
     readTime: '4 min de lecture',
     date: '12 Février 2026',
-    author: 'Équipe MOKI',
+    author: 'Équipe NÜMA',
     image: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1200&q=80',
     content: `
 ## Pourquoi le choix du harnais est déterminant
@@ -44,7 +44,7 @@ Recherchez des matériaux respirants pour éviter la rétention de chaleur en é
     categoryTag: 'cat',
     readTime: '3 min de lecture',
     date: '28 Janvier 2026',
-    author: 'Équipe MOKI',
+    author: 'Équipe NÜMA',
     image: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=1200&q=80',
     content: `
 ## Le brossage félin : un geste de soin essentiel
@@ -76,7 +76,7 @@ Installez votre chat sur vos genoux au moment où il est détendu. Commencez par
     categoryTag: 'care',
     readTime: '5 min de lecture',
     date: '15 Janvier 2026',
-    author: 'Équipe MOKI',
+    author: 'Équipe NÜMA',
     image: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=1200&q=80',
     content: `
 ## Les coussinets : une zone sensible et sollicitée

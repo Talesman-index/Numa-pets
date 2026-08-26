@@ -19,6 +19,23 @@ const navItems = [
 export const Header = ({ currentRoute, onNavigate }) => {
   const { cartCount, setIsCartOpen, setIsSearchOpen } = useStore();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [isAnnouncementVisible, setIsAnnouncementVisible] = useState(() => {
+    try {
+      return !sessionStorage.getItem('moki_announcement_closed');
+    } catch {
+      return true;
+    }
+  });
+
+  const handleCloseAnnouncement = (e) => {
+    e.stopPropagation();
+    setIsAnnouncementVisible(false);
+    try {
+      sessionStorage.setItem('moki_announcement_closed', 'true');
+    } catch {
+      // ignore
+    }
+  };
 
   const handleNav = (routeId) => {
     onNavigate(routeId);
@@ -35,20 +52,30 @@ export const Header = ({ currentRoute, onNavigate }) => {
     <>
       <header className="cream-header-wrap">
         {/* ── Top announcement bar ── */}
-        <div className="top-amber-announcement" style={{ backgroundColor: '#4E0000', color: '#FFAE01' }}>
-          <div className="container top-amber-inner">
-            <span className="announce-item">
-              <Truck size={12} color="#FFAE01" />
-              <span>Livraison offerte dès 49€</span>
-            </span>
-            <span className="announcement-bullet">•</span>
-            <span className="announce-item announce-hide-xs">Expédié sous 24h</span>
-            <span className="announcement-bullet announce-hide-xs">•</span>
-            <span className="announce-item announce-hide-xs">Retours 30 jours</span>
-            <span className="announcement-bullet">•</span>
-            <span className="announce-item" style={{ color: '#FFFFFF' }}>Abonnement -10%</span>
+        {isAnnouncementVisible && (
+          <div className="top-amber-announcement" style={{ backgroundColor: '#4E0000', color: '#FFAE01' }}>
+            <div className="container top-amber-inner">
+              <span className="announce-item">
+                <Truck size={12} color="#FFAE01" />
+                <span>Livraison en France</span>
+              </span>
+              <span className="announcement-bullet">•</span>
+              <span className="announce-item announce-hide-xs">Expédition depuis la France</span>
+              <span className="announcement-bullet announce-hide-xs">•</span>
+              <span className="announce-item announce-hide-xs">Retours simplifiés</span>
+              <span className="announcement-bullet">•</span>
+              <span className="announce-item" style={{ color: '#FFFFFF' }}>Livraison récurrente disponible</span>
+            </div>
+            <button
+              type="button"
+              className="top-amber-close-btn"
+              onClick={handleCloseAnnouncement}
+              aria-label="Fermer l'alerte"
+            >
+              <X size={13} />
+            </button>
           </div>
-        </div>
+        )}
 
         {/* ── Main header bar ── */}
         <div className="cream-header">
@@ -73,7 +100,7 @@ export const Header = ({ currentRoute, onNavigate }) => {
               <div className="sunburst-logo-icon">
                 <PawPrint size={18} fill="#4E0000" color="#4E0000" />
               </div>
-              <span className="cream-logo-text" style={{ color: '#4E0000' }}>MOKI</span>
+              <span className="cream-logo-text" style={{ color: '#4E0000' }}>NÜMA</span>
             </button>
 
             {/* Desktop nav — hidden on mobile */}
@@ -171,9 +198,9 @@ export const Header = ({ currentRoute, onNavigate }) => {
           <div className="cream-drawer-topbar">
             <div className="cream-drawer-logo">
               <div className="sunburst-logo-icon" style={{ width: 30, height: 30 }}>
-                <PawPrint size={14} fill="#FFAE01" color="#FFAE01" />
+                <PawPrint size={16} fill="#4E0000" color="#4E0000" />
               </div>
-              <span>MOKI</span>
+              <span>NÜMA</span>
             </div>
             <button
               type="button"
@@ -189,11 +216,11 @@ export const Header = ({ currentRoute, onNavigate }) => {
           <div className="cream-drawer-badges">
             <div className="cream-drawer-badge-pill">
               <Truck size={12} color="#FFAE01" />
-              <span>Livraison offerte dès 49€</span>
+              <span>Expédition depuis la France</span>
             </div>
             <div className="cream-drawer-badge-pill">
               <Package size={12} color="#FFAE01" />
-              <span>Expédié sous 24h · Retours 30j</span>
+              <span>Retours simplifiés · Stock en France</span>
             </div>
           </div>
 

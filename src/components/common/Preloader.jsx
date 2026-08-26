@@ -71,10 +71,10 @@ export const Preloader = ({ onDone }) => {
 
         {/* Brand Name Typography */}
         <div className="moki-pre-brand">
-          <span className="moki-pre-letter" style={{ '--i': 0 }}>M</span>
-          <span className="moki-pre-letter" style={{ '--i': 1 }}>O</span>
-          <span className="moki-pre-letter" style={{ '--i': 2 }}>K</span>
-          <span className="moki-pre-letter" style={{ '--i': 3 }}>I</span>
+          <span className="moki-pre-letter" style={{ '--i': 0 }}>N</span>
+          <span className="moki-pre-letter" style={{ '--i': 1 }}>Ü</span>
+          <span className="moki-pre-letter" style={{ '--i': 2 }}>M</span>
+          <span className="moki-pre-letter" style={{ '--i': 3 }}>A</span>
         </div>
 
         <p className="moki-pre-tagline">Le soin naturel pour vos animaux</p>

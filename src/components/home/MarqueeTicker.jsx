@@ -3,13 +3,13 @@ import { Sparkles, ShieldCheck, Truck, RotateCcw, HeartHandshake, RefreshCw, Sta
 
 export const MarqueeTicker = () => {
   const items = [
-    { icon: <Sparkles size={15} color="#FFAE01" />, text: 'Catalogue court & exigeant' },
-    { icon: <Truck size={15} color="#FFAE01" />, text: 'Expédié sous 24h depuis la France' },
+    { icon: <Sparkles size={15} color="#FFAE01" />, text: 'Catalogue court & maîtrisé' },
+    { icon: <Truck size={15} color="#FFAE01" />, text: 'Expédition depuis la France' },
     { icon: <ShieldCheck size={15} color="#FFAE01" />, text: 'Zéro ingrédient superflu' },
-    { icon: <Star size={15} color="#FFAE01" fill="#FFAE01" />, text: '4.9/5 Avis clients certifiés' },
-    { icon: <RotateCcw size={15} color="#FFAE01" />, text: 'Retours gratuits sous 30 jours' },
-    { icon: <RefreshCw size={15} color="#FFAE01" />, text: 'Livraison automatique -10% sans engagement' },
-    { icon: <HeartHandshake size={15} color="#FFAE01" />, text: 'Conçu pour leur bien-être' }
+    { icon: <HeartHandshake size={15} color="#FFAE01" />, text: 'Soin, promenade, jeu & confort' },
+    { icon: <RotateCcw size={15} color="#FFAE01" />, text: 'Retours simplifiés' },
+    { icon: <RefreshCw size={15} color="#FFAE01" />, text: 'Livraison récurrente disponible' },
+    { icon: <Sparkles size={15} color="#FFAE01" />, text: 'Pensé pour leur quotidien' }
   ];
 
   return (

@@ -5,26 +5,26 @@ export const ValueProps = ({ onNavigate }) => {
   const pillars = [
     {
       num: '01',
-      title: 'Sélection Maîtrisée',
-      desc: '15 à 20 produits incontournables minutieusement testés et approuvés. Aucun superflu.',
+      title: 'Sélection maîtrisée',
+      desc: 'Une gamme volontairement courte pour faciliter le choix.',
       icon: <Sparkles size={20} />
     },
     {
       num: '02',
-      title: 'Spécialiste Équipement & Hygiène',
-      desc: 'Ni croquettes, ni médicaments : nous nous concentrons sur le confort matériel et le soin cutané.',
+      title: 'Des essentiels pour leur quotidien',
+      desc: 'Soin, promenade, jeu, hygiène et confort réunis dans une sélection claire.',
       icon: <ShieldCheck size={20} />
     },
     {
       num: '03',
-      title: 'Vente Directe Éthique',
-      desc: 'Pas d’intermédiaires, pas de marges abusives. Une qualité premium au juste prix.',
+      title: 'Exigences de sécurité',
+      desc: 'Les informations de sécurité et de conformité doivent être accessibles pour les produits concernés.',
       icon: <HeartHandshake size={20} />
     },
     {
       num: '04',
-      title: 'Expédition sous 24h',
-      desc: 'Depuis notre centre logistique en France. Retours simples et gratuits sous 30 jours.',
+      title: 'Stock basé en France',
+      desc: 'Une organisation logistique pensée pour faciliter la préparation et l’expédition des commandes.',
       icon: <Truck size={20} />
     }
   ];
@@ -42,8 +42,8 @@ export const ValueProps = ({ onNavigate }) => {
             </div>
             
             <h2 className="paws-section-title">
-              Pourquoi les maîtres<br />
-              <span style={{ color: 'var(--color-brand-primary)' }}>font confiance à MOKI ?</span>
+              Pourquoi choisir<br />
+              <span style={{ color: 'var(--color-brand-primary)' }}>NÜMA ?</span>
             </h2>
 
             <div className="paws-pillars-grid">
@@ -60,17 +60,17 @@ export const ValueProps = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Right Column: Lifestyle Photo & CTA Box */}
+          {/* Right Column: Lifestyle Photo & Reassurance Box */}
           <div className="paws-value-media-wrap">
             <div className="paws-value-img-card">
               <img
-                src="/images/hero-golden-duo.jpg"
-                alt="Nos engagements MOKI"
+                src="/images/dog-cat-duo-lifestyle.jpg"
+                alt="Nos engagements NÜMA - Chiens et Chats"
                 className="paws-value-img"
               />
               <div className="paws-value-floating-card">
-                <div className="value-stat-val">99,4%</div>
-                <div className="value-stat-label">De satisfaction client certifiée</div>
+                <div className="value-stat-val">18 Essentiels</div>
+                <div className="value-stat-label">Sélection courte &amp; maîtrisée pour leur quotidien</div>
               </div>
             </div>
           </div>

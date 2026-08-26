@@ -111,7 +111,7 @@ export const ArticleDetailPage = ({ slug, onNavigate }) => {
           <div style={{ marginBottom: 'var(--space-8)', textAlign: 'center' }}>
             <div className="paws-section-badge" style={{ margin: '0 auto var(--space-2)' }}>
               <Sparkles size={12} />
-              <span>Sélection MOKI Recommandée</span>
+              <span>Sélection NÜMA Recommandée</span>
             </div>
             <h2 className="paws-section-title" style={{ fontSize: '2.2rem' }}>
               Les indispensables liés à ce guide

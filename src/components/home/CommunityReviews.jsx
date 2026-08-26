@@ -53,11 +53,11 @@ export const CommunityReviews = () => {
         
         <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto var(--space-12)' }}>
           <div className="paws-section-badge">
-            <span>AVIS CLIENTS</span>
+            <span>RETOURS D'EXPÉRIENCE</span>
           </div>
           <h2 className="paws-section-title">
-            Adopté par plus de<br />
-            <span style={{ color: 'var(--color-brand-primary)' }}>15 000 maîtres exigeants.</span>
+            Ce que disent les premiers maîtres<br />
+            <span style={{ color: 'var(--color-brand-primary)' }}>sur notre sélection NÜMA.</span>
           </h2>
         </div>
 

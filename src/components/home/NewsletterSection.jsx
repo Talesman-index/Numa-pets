@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle, Sparkles } from 'lucide-react';
+import { Send, CheckCircle } from 'lucide-react';
 import { useStore } from '../../context/StoreContext';
 
 export const NewsletterSection = () => {
@@ -11,7 +11,7 @@ export const NewsletterSection = () => {
     e.preventDefault();
     if (email) {
       setSubscribed(true);
-      addToast('Bienvenue dans la famille MOKI ! Code MOKI10 activé.');
+      addToast('Bienvenue dans la famille NÜMA ! Code NUMA10 activé.');
       setEmail('');
     }
   };
@@ -23,12 +23,11 @@ export const NewsletterSection = () => {
         <div className="paws-newsletter-card">
           <div className="paws-newsletter-left">
             <div className="paws-section-badge" style={{ backgroundColor: 'rgba(255, 107, 0, 0.2)', color: '#FF6B00' }}>
-              <Sparkles size={13} />
               <span>OFFRE DE BIENVENUE</span>
             </div>
 
             <h2 className="paws-newsletter-title">
-              Rejoignez le Club MOKI et<br />
+              Rejoignez le Club NÜMA et<br />
               profitez de <span style={{ color: '#FF6B00' }}>10% offerts</span> sur votre première commande.
             </h2>
 
@@ -43,7 +42,7 @@ export const NewsletterSection = () => {
                 <CheckCircle size={24} color="#10B981" />
                 <div>
                   <strong>Merci pour votre inscription !</strong>
-                  <p>Votre code <strong>MOKI10</strong> a été envoyé par email.</p>
+                  <p>Votre code <strong>NUMA10</strong> a été envoyé par email.</p>
                 </div>
               </div>
             ) : (

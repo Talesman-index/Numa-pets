@@ -318,7 +318,8 @@ export const INITIAL_PRODUCTS = [
     isNew: false,
     isRecurring: true,
     images: [
-      'https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=800&q=80'
+      '/images/product-poop-bag-dispenser-1.png',
+      '/images/product-poop-bag-dispenser-2.jpg'
     ],
     variants: [
       { id: 'pack', name: 'Pack', options: ['Étui + 4 rouleaux (80 sacs)', 'Recharge 8 rouleaux (160 sacs)'] }
@@ -330,7 +331,7 @@ export const INITIAL_PRODUCTS = [
       'Composition végétale à base d’amidon de maïs sans plastique pétrochimique',
       'Découpe pré-trouée nette et facile à détacher d’une seule main'
     ],
-    howToUse: 'Insérez le rouleau dans le boîtier et faites sortir le premier sac par la fente centrale. Attachez le mousqueton à l’anneau de votre laisse MOKI.',
+    howToUse: 'Insérez le rouleau dans le boîtier et faites sortir le premier sac par la fente centrale. Attachez le mousqueton à l’anneau de votre laisse NÜMA.',
     materials: 'Boîtier aluminium brossé, sacs en polymère d’amidon de maïs (PLA + PBAT).',
     safetyInfo: 'Tenir les sacs hors de portée des enfants pour éviter tout risque de suffocation.',
     shippingInfo: 'Expédié sous 24h. Recharges disponibles en abonnement récurrent.',
@@ -401,12 +402,12 @@ export const INITIAL_PRODUCTS = [
     isNew: false,
     isRecurring: false,
     images: [
-      'https://images.unsplash.com/photo-1541599540903-216a46ca1dc0?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=800&q=80'
+      '/images/product-dog-cushion-ortho-flat.png',
+      '/images/product-dog-cushion-ortho-bolster.png'
     ],
     variants: [
-      { id: 'size', name: 'Dimensions', options: ['M (75 x 55 x 10 cm)', 'L (95 x 75 x 12 cm)', 'XL (115 x 85 x 14 cm)'] },
-      { id: 'color', name: 'Tissu', options: ['Gris Chiné', 'Beige Sable', 'Vert Forêt'] }
+      { id: 'model', name: 'Modèle', options: ['Matelas plat orthopédique (Anthracite)', 'Lit avec rebord Deep Sleep (Gris)'] },
+      { id: 'size', name: 'Dimensions', options: ['M (75 x 55 x 10 cm)', 'L (95 x 75 x 12 cm)', 'XL (115 x 85 x 14 cm)'] }
     ],
     description: 'Une mousse bi-couche haute résilience et mémoire de forme qui épouse la morphologie du chien pour soulager les hanches et la colonne vertébrale. Housse déhoussable et lavable.',
     highlights: [
@@ -488,11 +489,11 @@ export const INITIAL_PRODUCTS = [
     isNew: false,
     isRecurring: false,
     images: [
-      'https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=800&q=80'
+      '/images/product-cat-brush-silicone-blue.png',
+      '/images/product-cat-brush-silicone-yellow.jpg'
     ],
     variants: [
-      { id: 'color', name: 'Couleur', options: ['Gris Nuage', 'Rose Poudré', 'Bleu Brume'] }
+      { id: 'color', name: 'Couleur', options: ['Bleu Océan', 'Jaune Soleil'] }
     ],
     description: 'Une brosse ergonomique tout en silicone souple de qualité alimentaire. Les picots coniques créent une attraction électrostatique qui capture les poils morts dès le premier passage.',
     highlights: [
@@ -593,15 +594,15 @@ export const INITIAL_PRODUCTS = [
   },
   {
     id: 'prod-cat-5',
-    slug: 'tapis-bac-litiere-alveole-double-couche',
-    title: 'Tapis de bac à litière alvéolé double couche',
-    subtitle: 'Capture les grains de litière sous les pattes et garde vos sols impeccables',
+    slug: 'litiere-silice-ultra-absorbante-anti-odeurs',
+    title: 'Litière de silice ultra-absorbante & anti-odeurs',
+    subtitle: 'Contrôle instantané des odeurs, zéro poussière et haute rétention',
     animal: 'cat',
     category: 'hygiene',
     categoryLabel: 'Soin & Hygiène',
     need: 'Prendre soin',
-    price: 24.90,
-    subscriptionPrice: 22.40,
+    price: 19.90,
+    subscriptionPrice: 17.90,
     rating: 4.9,
     reviewCount: 114,
     inStock: true,
@@ -609,28 +610,28 @@ export const INITIAL_PRODUCTS = [
     isBestSeller: true,
     isEssential: true,
     isNew: false,
-    isRecurring: false,
+    isRecurring: true,
     images: [
-      'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=800&q=80'
+      '/images/product-cat-litter-silica-blue.jpg',
+      '/images/product-cat-litter-silica-pink.png'
     ],
     variants: [
-      { id: 'size', name: 'Dimensions', options: ['M (60 x 45 cm)', 'L (75 x 55 cm)'] },
-      { id: 'color', name: 'Couleur', options: ['Gris Anthracite', 'Beige Sable'] }
+      { id: 'pack', name: 'Format', options: ['Seau hermétique + sachets (Bleu)', 'Pack familial agglomérant (Rose)'] }
     ],
-    description: 'La solution définitive contre la litière dispersée dans le salon. La structure en nid d’abeille laisse passer les grains vers la couche inférieure étanche.',
+    description: 'Une litière de silice ultra-performante formulée pour bloquer les odeurs en quelques secondes. Les micro-cristaux absorbent l’humidité jusqu’à 220% sans créer de poussière volatile ni coller aux pattes de votre chat.',
     highlights: [
-      'Structure alvéolée brevetée qui piège 95% des grains résiduels',
-      'Couche inférieure imperméable et lavable à grande eau',
-      'Ouverture latérale permettant de reverser les grains propres dans le bac',
-      'Mousse EVA douce pour les coussinets délicats'
+      'Absorption maximale : jusqu’à 220% de rétention d’humidité',
+      'Sans poussière, idéale pour les chats sensibles et les intérieurs soignés',
+      'Neutralisation immédiate et durable des odeurs',
+      'Cristaux doux respectueux des coussinets'
     ],
-    howToUse: 'Placez le tapis devant la sortie de la maison de toilette ou du bac. Pour vider, pincez les bords et reversez les grains dans le bac.',
-    materials: 'Mousse EVA haute densité non toxique, imperméable et sans odeur.',
-    safetyInfo: 'Ne pas plier à chaud. Rincer à l’eau savonneuse.',
-    shippingInfo: 'Expédié sous 24h depuis notre entrepôt.',
-    crossSellIds: ['prod-cat-6', 'prod-cat-7'],
+    howToUse: 'Versez la litière sur une épaisseur de 4 à 5 cm dans le bac propre. Retirez quotidiennement les déjections solides et remuez légèrement pour répartir les cristaux actifs.',
+    materials: '100% gel de silice purifié microporeux haute densité.',
+    safetyInfo: 'Ne pas jeter dans les canalisations ou toilettes. Conserver dans un endroit sec.',
+    shippingInfo: 'Expédié sous 24h depuis notre entrepôt. Disponible en abonnement régulier.',
+    crossSellIds: ['prod-cat-6', 'prod-cat-2'],
     reviews: [
-      { id: 'rev-17', author: 'Mélanie T.', rating: 5, date: '03/02/2026', title: 'Fini la corvée de balai quotidienne', text: 'On reverse simplement les grains dans le bac en 3 secondes. Indispensable !' }
+      { id: 'rev-17', author: 'Mélanie T.', rating: 5, date: '03/02/2026', title: 'Fini la corvée d’odeurs quotidienne', text: 'Absorbe immédiatement et ne colle pas aux pattes. Très bonne qualité de litière !' }
     ]
   },
   {

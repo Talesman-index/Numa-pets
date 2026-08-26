@@ -19,10 +19,10 @@ export const JournalTeaser = ({ onNavigate }) => {
         {/* Section Header Centered */}
         <div className="carepaw-journal-header">
           <div className="carepaw-nl-tag" style={{ margin: '0 auto 12px' }}>
-            <span>Le Journal MOKI</span>
+            <span>Le Journal NÜMA</span>
             <PawPrint size={13} />
           </div>
-          <h2 className="carepaw-journal-title">Derniers Articles & Conseils</h2>
+          <h2 className="carepaw-journal-title">Derniers Articles &amp; Conseils</h2>
         </div>
 
         {/* 2-Columns Grid Layout */}
@@ -56,7 +56,7 @@ export const JournalTeaser = ({ onNavigate }) => {
                     </span>
                     <span className="carepaw-h-author">
                       <User size={13} color="#FFA726" />
-                      <span>{article.author || 'Équipe MOKI'}</span>
+                      <span>{article.author || 'Équipe NÜMA'}</span>
                     </span>
                   </div>
                   <h3 className="carepaw-h-title">{article.title}</h3>
@@ -76,7 +76,7 @@ export const JournalTeaser = ({ onNavigate }) => {
             <div className="carepaw-featured-img-side">
               <img
                 src="/images/hero-golden-duo.jpg"
-                alt="Guide du mois MOKI"
+                alt="Guide du mois NÜMA"
                 className="carepaw-featured-dog-img"
               />
             </div>
@@ -85,7 +85,7 @@ export const JournalTeaser = ({ onNavigate }) => {
             <div className="carepaw-featured-content">
               <div className="carepaw-featured-author">
                 <User size={14} color="#FFA726" />
-                <span>Par le Dr. Vétérinaire MOKI</span>
+                <span>Par le Dr. Vétérinaire NÜMA</span>
               </div>
 
               <h3 className="carepaw-featured-title">
