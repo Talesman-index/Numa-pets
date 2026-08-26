@@ -14,6 +14,7 @@ export const CartDrawer = ({ onNavigate }) => {
     setIsCartOpen,
     updateCartQuantity,
     removeFromCart,
+    addToCart,
     products
   } = useStore();
 
@@ -24,7 +25,7 @@ export const CartDrawer = ({ onNavigate }) => {
   // Cross-sell suggestions (items not in cart)
   const suggestions = products
     .filter((p) => !cart.some((item) => item.product.id === p.id))
-    .slice(0, 2);
+    .slice(0, 3);
 
   const handleCheckout = () => {
     setIsCartOpen(false);
@@ -79,24 +80,59 @@ export const CartDrawer = ({ onNavigate }) => {
         {/* Body Items */}
         <div className="cart-drawer-body">
           {cart.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: 'var(--space-12) 0' }}>
-              <div style={{ width: 64, height: 64, borderRadius: 'var(--radius-full)', backgroundColor: 'var(--color-surface-subtle)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto var(--space-4)' }}>
-                <ShoppingBag size={28} color="var(--color-text-muted)" />
+            <div>
+              <div style={{ textAlign: 'center', padding: 'var(--space-8) 0 var(--space-6)' }}>
+                <div style={{ width: 60, height: 60, borderRadius: 'var(--radius-full)', backgroundColor: 'var(--color-surface-subtle)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto var(--space-3)' }}>
+                  <ShoppingBag size={26} color="var(--color-text-muted)" />
+                </div>
+                <h4 style={{ fontSize: 'var(--text-base)', fontWeight: 700, marginBottom: 'var(--space-2)' }}>Votre panier est vide</h4>
+                <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-4)' }}>
+                  Découvrez nos essentiels pour chien et chat pour commencer votre sélection.
+                </p>
+                <button
+                  type="button"
+                  className="btn btn-primary btn-sm"
+                  onClick={() => {
+                    setIsCartOpen(false);
+                    onNavigate('nos-essentiels');
+                  }}
+                >
+                  Découvrir nos essentiels
+                </button>
               </div>
-              <h4 style={{ fontSize: 'var(--text-base)', fontWeight: 600, marginBottom: 'var(--space-2)' }}>Votre panier est vide</h4>
-              <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-6)' }}>
-                Découvrez nos essentiels pour chien et chat soigneusement sélectionnés.
-              </p>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => {
-                  setIsCartOpen(false);
-                  onNavigate('nos-essentiels');
-                }}
-              >
-                Découvrir nos essentiels
-              </button>
+
+              {/* Suggestions when empty */}
+              {suggestions.length > 0 && (
+                <div style={{ marginTop: 'var(--space-4)', paddingTop: 'var(--space-4)', borderTop: '1px solid var(--color-border-subtle)' }}>
+                  <div style={{ fontSize: 'var(--text-xs)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-3)' }}>
+                    Nos indispensables du moment
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+                    {suggestions.map((sug) => (
+                      <div key={sug.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: 'var(--space-2) var(--space-3)', backgroundColor: 'var(--color-surface-subtle)', borderRadius: 'var(--radius-md)' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
+                          <img src={sug.images[0]} alt={sug.title} style={{ width: 44, height: 44, borderRadius: 'var(--radius-sm)', objectFit: 'cover' }} />
+                          <div>
+                            <div style={{ fontSize: 'var(--text-xs)', fontWeight: 600 }}>{sug.title}</div>
+                            <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-secondary)' }}>{sug.price.toFixed(2)} €</div>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          className="btn btn-secondary btn-sm"
+                          onClick={() => {
+                            const defVariants = {};
+                            if (sug.variants) sug.variants.forEach((v) => { defVariants[v.name] = v.options[0]; });
+                            addToCart(sug, defVariants, 1, false);
+                          }}
+                        >
+                          + Ajouter
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           ) : (
             <>
@@ -162,7 +198,7 @@ export const CartDrawer = ({ onNavigate }) => {
                           onClick={() => {
                             const defVariants = {};
                             if (sug.variants) sug.variants.forEach((v) => { defVariants[v.name] = v.options[0]; });
-                            useStore().addToCart(sug, defVariants, 1, false);
+                            addToCart(sug, defVariants, 1, false);
                           }}
                         >
                           + Ajouter

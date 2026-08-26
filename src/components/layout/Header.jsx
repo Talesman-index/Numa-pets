@@ -252,6 +252,14 @@ export const Header = ({ currentRoute, onNavigate }) => {
           <div className="cream-drawer-nav" style={{ paddingTop: 6, flex: 'none' }}>
             <button
               type="button"
+              onClick={() => { setDrawerOpen(false); setIsCartOpen(true); }}
+              className="cream-mobile-link"
+            >
+              <ShoppingBag size={14} color="#FFAE01" />
+              <span>Mon panier ({cartCount})</span>
+            </button>
+            <button
+              type="button"
               onClick={() => handleNav('compte')}
               className="cream-mobile-link"
             >
