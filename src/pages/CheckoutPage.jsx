@@ -131,19 +131,22 @@ export const CheckoutPage = ({ onNavigate }) => {
         <div className="step-tracker">
           <div className={`step-item ${step === 1 ? 'active' : ''} ${step > 1 ? 'completed' : ''}`}>
             <span className="step-num">{step > 1 ? '✓' : '1'}</span>
-            <span>1. Informations</span>
+            <span className="step-label">Informations</span>
           </div>
+          <div className={`step-connector ${step > 1 ? 'completed' : ''}`} />
           <div className={`step-item ${step === 2 ? 'active' : ''} ${step > 2 ? 'completed' : ''}`}>
             <span className="step-num">{step > 2 ? '✓' : '2'}</span>
-            <span>2. Livraison</span>
+            <span className="step-label">Livraison</span>
           </div>
+          <div className={`step-connector ${step > 2 ? 'completed' : ''}`} />
           <div className={`step-item ${step === 3 ? 'active' : ''} ${step > 3 ? 'completed' : ''}`}>
             <span className="step-num">{step > 3 ? '✓' : '3'}</span>
-            <span>3. Paiement</span>
+            <span className="step-label">Paiement</span>
           </div>
+          <div className={`step-connector ${step >= 4 ? 'completed' : ''}`} />
           <div className={`step-item ${step === 4 ? 'active completed' : ''}`}>
-            <span className="step-num">4</span>
-            <span>4. Confirmation</span>
+            <span className="step-num">{step === 4 ? '✓' : '4'}</span>
+            <span className="step-label">Confirmation</span>
           </div>
         </div>
 
