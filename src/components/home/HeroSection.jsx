@@ -1,25 +1,26 @@
 import React from 'react';
 import { ArrowUpRight, PawPrint, Leaf } from 'lucide-react';
+import { ScrollDownIndicator } from '../common/ScrollDownIndicator';
 
 export const HeroSection = ({ onNavigate }) => {
   return (
-    <section className="paws-hero-section">
+    <section className="paws-hero-section" style={{ position: 'relative' }}>
       <div className="container paws-hero-container">
-        
-        {/* 1. Titre Géant en Français */}
-        <div className="paws-hero-headline-wrap">
+
+        {/* 1. Titre Géant */}
+        <div className="paws-hero-headline-wrap reveal-up">
           <h1 className="paws-hero-title">
-            <span className="paws-title-dark">Le Confort & le Soin</span>
-            <span className="paws-title-orange">Pensés Pour Chiens & Chats</span>
+            <span className="paws-title-dark">Le Confort &amp; le Soin</span>
+            <span className="paws-title-orange">Pensés Pour Chiens &amp; Chats</span>
           </h1>
         </div>
 
         {/* 2. Scène Dynamique du Hero */}
         <div className="paws-hero-stage">
-          
-          {/* Colonne Gauche : Badge Soleil & Proposition de Valeur MOKI */}
-          <div className="paws-hero-left">
-            {/* Macaron Solaire Orange */}
+
+          {/* Colonne Gauche */}
+          <div className="paws-hero-left stagger-children">
+            {/* Macaron Solaire */}
             <div className="paws-sunburst-badge">
               <svg viewBox="0 0 100 100" className="sunburst-svg">
                 <path
@@ -32,17 +33,14 @@ export const HeroSection = ({ onNavigate }) => {
               </div>
             </div>
 
-            {/* Titre d'Accroche */}
             <h2 className="paws-left-title">
               Sélection Courte,<br />Qualité Durable.
             </h2>
 
-            {/* Description contexte MOKI */}
             <p className="paws-left-desc">
               Équipements, accessoires et soins essentiels. Conçus avec soin, vendus en direct pour le bien-être de vos animaux.
             </p>
 
-            {/* Bouton CTA Principal */}
             <button
               type="button"
               className="paws-btn-shop-now"
@@ -55,8 +53,8 @@ export const HeroSection = ({ onNavigate }) => {
             </button>
           </div>
 
-          {/* Colonne Centrale : Image de la cliente et son chien */}
-          <div className="paws-hero-center">
+          {/* Colonne Centrale : Image */}
+          <div className="paws-hero-center reveal-scale">
             <div className="paws-center-composition">
               <img
                 src="/images/hero-woman-dog.png"
@@ -66,8 +64,8 @@ export const HeroSection = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Colonne Droite : Packs & Emballages Produits MOKI */}
-          <div className="paws-hero-right">
+          {/* Colonne Droite : Packs */}
+          <div className="paws-hero-right reveal-right">
             <div
               className="paws-hero-packs-wrap"
               onClick={() => onNavigate('nos-essentiels')}
@@ -85,7 +83,7 @@ export const HeroSection = ({ onNavigate }) => {
                 className="paws-hero-packs-img"
               />
               <div className="paws-hero-packs-caption">
-                <strong>Nos Gammes & Packs Essentiels</strong>
+                <strong>Nos Gammes &amp; Packs Essentiels</strong>
                 <span>-10% en livraison récurrente libre</span>
               </div>
             </div>
@@ -94,6 +92,9 @@ export const HeroSection = ({ onNavigate }) => {
         </div>
 
       </div>
+
+      {/* Scroll-Down Indicator */}
+      <ScrollDownIndicator />
     </section>
   );
 };

@@ -5,6 +5,8 @@ import { Footer } from './components/layout/Footer';
 import { CartDrawer } from './components/layout/CartDrawer';
 import { SearchModal } from './components/layout/SearchModal';
 import { ToastContainer } from './components/common/Toast';
+import { Preloader } from './components/common/Preloader';
+import { initGlobalScrollReveal } from './hooks/useScrollReveal';
 
 import { HomePage } from './pages/HomePage';
 import { DogPage } from './pages/DogPage';
@@ -22,14 +24,14 @@ import { OrderTrackingPage } from './pages/OrderTrackingPage';
 import { AdminPage } from './pages/AdminPage';
 
 function AppContent() {
-  // Navigation State with Hash router synchronization
+  const [isLoading, setIsLoading] = useState(true);
   const [currentRoute, setCurrentRoute] = useState(() => {
     const hash = window.location.hash.replace('#/', '').replace('#', '');
     return hash || 'accueil';
   });
-
   const [routeParams, setRouteParams] = useState({});
 
+  // Hash router sync
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#/', '').replace('#', '');
@@ -45,15 +47,23 @@ function AppContent() {
         setCurrentRoute('accueil');
       }
     };
-
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
+  // Re-initialise scroll reveal on every route change
+  useEffect(() => {
+    // Small delay so new DOM elements are rendered first
+    const t = setTimeout(() => {
+      const cleanup = initGlobalScrollReveal();
+      return cleanup;
+    }, 80);
+    return () => clearTimeout(t);
+  }, [currentRoute, isLoading]);
+
   const navigate = (route, params = {}) => {
     setCurrentRoute(route);
     setRouteParams(params);
-
     if (route.startsWith('produit-')) {
       window.location.hash = `#/produit/${route.replace('produit-', '')}`;
     } else if (route.startsWith('article-')) {
@@ -61,48 +71,30 @@ function AppContent() {
     } else {
       window.location.hash = `#/${route}`;
     }
-
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const renderCurrentPage = () => {
     if (currentRoute.startsWith('produit-')) {
-      const slug = currentRoute.replace('produit-', '');
-      return <ProductDetailPage slug={slug} onNavigate={navigate} />;
+      return <ProductDetailPage slug={currentRoute.replace('produit-', '')} onNavigate={navigate} />;
     }
-
     if (currentRoute.startsWith('article-')) {
-      const slug = currentRoute.replace('article-', '');
-      return <ArticleDetailPage slug={slug} onNavigate={navigate} />;
+      return <ArticleDetailPage slug={currentRoute.replace('article-', '')} onNavigate={navigate} />;
     }
-
     switch (currentRoute) {
-      case 'accueil':
-        return <HomePage onNavigate={navigate} />;
-      case 'chien':
-        return <DogPage onNavigate={navigate} initialCategory={routeParams.category} />;
-      case 'chat':
-        return <CatPage onNavigate={navigate} initialCategory={routeParams.category} />;
-      case 'nos-essentiels':
-        return <CatalogPage onNavigate={navigate} filterParams={routeParams} />;
-      case 'panier':
-        return <CartPage onNavigate={navigate} />;
-      case 'checkout':
-        return <CheckoutPage onNavigate={navigate} />;
-      case 'compte':
-        return <AccountPage onNavigate={navigate} />;
-      case 'conseils':
-        return <JournalPage onNavigate={navigate} />;
-      case 'a-propos':
-        return <AboutPage onNavigate={navigate} />;
-      case 'faq':
-        return <FaqPage onNavigate={navigate} />;
-      case 'suivi-commande':
-        return <OrderTrackingPage trackingId={routeParams.trackingId} onNavigate={navigate} />;
-      case 'admin':
-        return <AdminPage onNavigate={navigate} />;
-      default:
-        return <HomePage onNavigate={navigate} />;
+      case 'accueil':      return <HomePage onNavigate={navigate} />;
+      case 'chien':        return <DogPage onNavigate={navigate} initialCategory={routeParams.category} />;
+      case 'chat':         return <CatPage onNavigate={navigate} initialCategory={routeParams.category} />;
+      case 'nos-essentiels': return <CatalogPage onNavigate={navigate} filterParams={routeParams} />;
+      case 'panier':       return <CartPage onNavigate={navigate} />;
+      case 'checkout':     return <CheckoutPage onNavigate={navigate} />;
+      case 'compte':       return <AccountPage onNavigate={navigate} />;
+      case 'conseils':     return <JournalPage onNavigate={navigate} />;
+      case 'a-propos':     return <AboutPage onNavigate={navigate} />;
+      case 'faq':          return <FaqPage onNavigate={navigate} />;
+      case 'suivi-commande': return <OrderTrackingPage trackingId={routeParams.trackingId} onNavigate={navigate} />;
+      case 'admin':        return <AdminPage onNavigate={navigate} />;
+      default:             return <HomePage onNavigate={navigate} />;
     }
   };
 
@@ -110,6 +102,12 @@ function AppContent() {
 
   return (
     <>
+      {/* ── Animated Preloader ── */}
+      {isLoading && (
+        <Preloader onDone={() => setIsLoading(false)} />
+      )}
+
+      {/* ── Main App (visible behind preloader) ── */}
       <Header currentRoute={currentRoute} onNavigate={navigate} />
       <main style={{ flexGrow: 1 }}>
         {renderCurrentPage()}

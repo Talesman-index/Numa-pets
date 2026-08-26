@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import {
   ArrowUpRight, Search, User, ShoppingBag, SlidersHorizontal,
-  Menu, X, PawPrint, Truck, Sparkles, Package, ChevronRight
+  Menu, X, PawPrint, Truck, Sparkles, Package, ChevronRight,
+  Heart, HelpCircle, BookOpen, Home, Dog
 } from 'lucide-react';
 import { useStore } from '../../context/StoreContext';
 
 const navItems = [
-  { id: 'accueil',       label: 'Accueil',          icon: null },
-  { id: 'chien',         label: 'Chien',             icon: null },
-  { id: 'chat',          label: 'Chat',              icon: null },
-  { id: 'nos-essentiels',label: 'Nos essentiels',    icon: null },
-  { id: 'conseils',      label: 'Le Journal',        icon: null },
-  { id: 'a-propos',      label: 'À propos',          icon: null },
-  { id: 'faq',           label: 'Aide & FAQ',        icon: null },
+  { id: 'accueil',        label: 'Accueil',          icon: Home },
+  { id: 'chien',          label: 'Chien',             icon: null },
+  { id: 'chat',           label: 'Chat',              icon: null },
+  { id: 'nos-essentiels', label: 'Nos essentiels',    icon: null },
+  { id: 'conseils',       label: 'Le Journal',        icon: BookOpen },
+  { id: 'a-propos',       label: 'À propos',          icon: Heart },
+  { id: 'faq',            label: 'Aide & FAQ',        icon: HelpCircle },
 ];
 
 export const Header = ({ currentRoute, onNavigate }) => {
@@ -33,19 +34,19 @@ export const Header = ({ currentRoute, onNavigate }) => {
   return (
     <>
       <header className="cream-header-wrap">
-        {/* ── Top amber announcement bar ── */}
+        {/* ── Top announcement bar ── */}
         <div className="top-amber-announcement" style={{ backgroundColor: '#4E0000', color: '#FFAE01' }}>
           <div className="container top-amber-inner">
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
-              <Truck size={13} color="#FFAE01" />
-              LIVRAISON OFFERTE DÈS 49€
+            <span className="announce-item">
+              <Truck size={12} color="#FFAE01" />
+              <span>Livraison offerte dès 49€</span>
             </span>
             <span className="announcement-bullet">•</span>
-            <span>EXPÉDIÉ SOUS 24H</span>
+            <span className="announce-item announce-hide-xs">Expédié sous 24h</span>
+            <span className="announcement-bullet announce-hide-xs">•</span>
+            <span className="announce-item announce-hide-xs">Retours 30 jours</span>
             <span className="announcement-bullet">•</span>
-            <span>RETOURS 30 JOURS</span>
-            <span className="announcement-bullet">•</span>
-            <span style={{ color: '#FFFFFF' }}>ABONNEMENT -10%</span>
+            <span className="announce-item" style={{ color: '#FFFFFF' }}>Abonnement -10%</span>
           </div>
         </div>
 
@@ -75,9 +76,9 @@ export const Header = ({ currentRoute, onNavigate }) => {
               <span className="cream-logo-text" style={{ color: '#4E0000' }}>MOKI</span>
             </button>
 
-            {/* Desktop nav */}
+            {/* Desktop nav — hidden on mobile */}
             <nav className="cream-nav-links">
-              {navItems.map((item) => (
+              {navItems.slice(0, 6).map((item) => (
                 <button
                   key={item.id}
                   type="button"
@@ -91,23 +92,62 @@ export const Header = ({ currentRoute, onNavigate }) => {
             </nav>
 
             {/* Right icons */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <button type="button" className="cream-icon-btn" onClick={() => setIsSearchOpen(true)} aria-label="Rechercher">
+            <div className="cream-header-actions">
+              {/* Search — hidden on mobile (in drawer) */}
+              <button
+                type="button"
+                className="cream-icon-btn cream-desktop-only"
+                onClick={() => setIsSearchOpen(true)}
+                aria-label="Rechercher"
+              >
                 <Search size={17} />
               </button>
-              <button type="button" className="cream-icon-btn" onClick={() => handleNav('compte')} aria-label="Mon compte">
+
+              {/* Account — hidden on mobile (in drawer) */}
+              <button
+                type="button"
+                className="cream-icon-btn cream-desktop-only"
+                onClick={() => handleNav('compte')}
+                aria-label="Mon compte"
+              >
                 <User size={17} />
               </button>
-              <button type="button" className="cream-icon-btn" onClick={() => setIsCartOpen(true)} aria-label="Panier" style={{ position: 'relative' }}>
+
+              {/* Cart — always visible */}
+              <button
+                type="button"
+                className="cream-icon-btn"
+                onClick={() => setIsCartOpen(true)}
+                aria-label="Panier"
+                style={{ position: 'relative' }}
+              >
                 <ShoppingBag size={17} />
-                {cartCount > 0 && <span className="cream-badge-count">{cartCount}</span>}
+                {cartCount > 0 && (
+                  <span className="cream-badge-count">{cartCount}</span>
+                )}
               </button>
-              <button type="button" onClick={() => handleNav('admin')} className="cream-admin-pill" title="Admin">
-                <SlidersHorizontal size={13} /><span>Admin</span>
+
+              {/* Admin pill — desktop only */}
+              <button
+                type="button"
+                onClick={() => handleNav('admin')}
+                className="cream-admin-pill cream-desktop-only"
+                title="Admin"
+              >
+                <SlidersHorizontal size={13} />
+                <span>Admin</span>
               </button>
-              <button type="button" onClick={() => handleNav('nos-essentiels')} className="cream-cta-orange">
+
+              {/* Boutique CTA — desktop only */}
+              <button
+                type="button"
+                onClick={() => handleNav('nos-essentiels')}
+                className="cream-cta-orange cream-desktop-only"
+              >
                 <span>Boutique</span>
-                <div className="cta-arrow-circle"><ArrowUpRight size={14} /></div>
+                <div className="cta-arrow-circle">
+                  <ArrowUpRight size={14} />
+                </div>
               </button>
             </div>
           </div>
@@ -125,13 +165,13 @@ export const Header = ({ currentRoute, onNavigate }) => {
 
       {/* ── Mobile Side Drawer ── */}
       {drawerOpen && (
-        <div className="cream-mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu de navigation">
+        <div className="cream-mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu principal">
 
           {/* Drawer top bar */}
           <div className="cream-drawer-topbar">
             <div className="cream-drawer-logo">
               <div className="sunburst-logo-icon" style={{ width: 30, height: 30 }}>
-                <PawPrint size={15} fill="#FFAE01" color="#FFAE01" />
+                <PawPrint size={14} fill="#FFAE01" color="#FFAE01" />
               </div>
               <span>MOKI</span>
             </div>
@@ -148,14 +188,17 @@ export const Header = ({ currentRoute, onNavigate }) => {
           {/* Reassurance pills */}
           <div className="cream-drawer-badges">
             <div className="cream-drawer-badge-pill">
-              <Truck size={13} color="#FFAE01" />
+              <Truck size={12} color="#FFAE01" />
               <span>Livraison offerte dès 49€</span>
             </div>
             <div className="cream-drawer-badge-pill">
-              <Package size={13} color="#FFAE01" />
-              <span>Expédié sous 24h • Retours 30j</span>
+              <Package size={12} color="#FFAE01" />
+              <span>Expédié sous 24h · Retours 30j</span>
             </div>
           </div>
+
+          {/* Section label */}
+          <div className="cream-drawer-section-label">Navigation</div>
 
           {/* Nav links */}
           <div className="cream-drawer-nav">
@@ -166,26 +209,56 @@ export const Header = ({ currentRoute, onNavigate }) => {
                 onClick={() => handleNav(item.id)}
                 className={`cream-mobile-link ${currentRoute === item.id ? 'active' : ''}`}
               >
-                <ChevronRight size={15} color={currentRoute === item.id ? '#FFAE01' : 'rgba(255,255,255,0.4)'} />
+                <ChevronRight
+                  size={14}
+                  color={currentRoute === item.id ? '#FFAE01' : 'rgba(255,255,255,0.3)'}
+                />
                 {item.label}
               </button>
             ))}
           </div>
 
-          {/* Bottom CTAs */}
+          {/* Section label — Compte */}
+          <div className="cream-drawer-section-label">Mon compte</div>
+
+          {/* Account links in drawer */}
+          <div className="cream-drawer-nav" style={{ paddingTop: 6, flex: 'none' }}>
+            <button
+              type="button"
+              onClick={() => handleNav('compte')}
+              className="cream-mobile-link"
+            >
+              <User size={14} color="rgba(255,255,255,0.4)" />
+              Mon espace client
+            </button>
+            <button
+              type="button"
+              onClick={() => setIsSearchOpen(true) || setDrawerOpen(false)}
+              className="cream-mobile-link"
+            >
+              <Search size={14} color="rgba(255,255,255,0.4)" />
+              Rechercher un produit
+            </button>
+            <button
+              type="button"
+              onClick={() => handleNav('admin')}
+              className="cream-mobile-link"
+            >
+              <SlidersHorizontal size={14} color="rgba(255,255,255,0.4)" />
+              Back-Office Admin
+            </button>
+          </div>
+
+          {/* Bottom CTA */}
           <div className="cream-drawer-bottom">
-            <button type="button" onClick={() => handleNav('nos-essentiels')} className="cream-drawer-cta-primary">
+            <button
+              type="button"
+              onClick={() => handleNav('nos-essentiels')}
+              className="cream-drawer-cta-primary"
+            >
               <Sparkles size={15} />
               Voir la boutique
               <ArrowUpRight size={15} />
-            </button>
-            <button type="button" onClick={() => handleNav('compte')} className="cream-drawer-cta-secondary">
-              <User size={15} />
-              Mon espace client
-            </button>
-            <button type="button" onClick={() => handleNav('admin')} className="cream-drawer-cta-secondary">
-              <SlidersHorizontal size={15} />
-              Back-Office Admin
             </button>
           </div>
         </div>

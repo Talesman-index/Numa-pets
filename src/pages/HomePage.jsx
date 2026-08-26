@@ -13,35 +13,53 @@ import { NewsletterSection } from '../components/home/NewsletterSection';
 export const HomePage = ({ onNavigate }) => {
   return (
     <div>
-      {/* 1. Dark #036146 Hero + Peeking Pets + 3 Overlap Cards */}
+      {/* 1. Hero — scroll-down indicator intégré dans HeroSection */}
       <HeroSection onNavigate={onNavigate} />
 
-      {/* 2. Welcome / Brand Story with Golden Circle Mask */}
-      <BondStorySection onNavigate={onNavigate} />
+      {/* 2. Bond Story */}
+      <div className="reveal-up">
+        <BondStorySection onNavigate={onNavigate} />
+      </div>
 
-      {/* 3. Providing Our Best: 3 Arched Cards on Rich Cream Background */}
-      <NeedCategories onNavigate={onNavigate} />
+      {/* 3. Need Categories */}
+      <div className="reveal-up reveal-delay-1">
+        <NeedCategories onNavigate={onNavigate} />
+      </div>
 
-      {/* 4. Pet Essentials / 4 Numbered Pillars + Lifestyle photo */}
-      <ValueProps onNavigate={onNavigate} />
+      {/* 4. Value Props */}
+      <div className="reveal-fade">
+        <ValueProps onNavigate={onNavigate} />
+      </div>
 
-      {/* 5. Featured Best-Sellers Catalog */}
-      <EssentialsGrid onNavigate={onNavigate} />
+      {/* 5. Best-Sellers */}
+      <div className="reveal-up">
+        <EssentialsGrid onNavigate={onNavigate} />
+      </div>
 
-      {/* 6. Pricing & Recurring Subscriptions in #036146 */}
-      <RecurringSubscriptionTeaser onNavigate={onNavigate} />
+      {/* 6. Subscriptions */}
+      <div className="reveal-scale">
+        <RecurringSubscriptionTeaser onNavigate={onNavigate} />
+      </div>
 
-      {/* 7. Client Reviews with Circular Avatar */}
-      <CommunityReviews onNavigate={onNavigate} />
+      {/* 7. Reviews */}
+      <div className="reveal-up">
+        <CommunityReviews onNavigate={onNavigate} />
+      </div>
 
-      {/* 8. Booking / Routine Finder Banner */}
-      <RoutineFinderBanner onNavigate={onNavigate} />
+      {/* 8. Routine Finder */}
+      <div className="reveal-left">
+        <RoutineFinderBanner onNavigate={onNavigate} />
+      </div>
 
-      {/* 9. Journal & Advice Guides */}
-      <JournalTeaser onNavigate={onNavigate} />
+      {/* 9. Journal */}
+      <div className="reveal-up">
+        <JournalTeaser onNavigate={onNavigate} />
+      </div>
 
-      {/* 10. Newsletter Section in #036146 */}
-      <NewsletterSection />
+      {/* 10. Newsletter */}
+      <div className="reveal-fade">
+        <NewsletterSection />
+      </div>
     </div>
   );
 };
