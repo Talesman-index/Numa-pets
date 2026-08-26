@@ -1,6 +1,5 @@
 import React from 'react';
-import { ArrowUpRight, PawPrint, Leaf, Sparkles } from 'lucide-react';
-import { ScrollDownIndicator } from '../common/ScrollDownIndicator';
+import { ArrowUpRight, PawPrint, Leaf } from 'lucide-react';
 import { useHeroParallax } from '../../hooks/useScrollReveal';
 
 export const HeroSection = ({ onNavigate }) => {
@@ -146,9 +145,6 @@ export const HeroSection = ({ onNavigate }) => {
         </div>
 
       </div>
-
-      {/* Scroll-Down Indicator */}
-      <ScrollDownIndicator targetId="histoire-section" />
     </section>
   );
 };
