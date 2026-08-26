@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Trash2, ShoppingBag, ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
+import { X, Trash2, ShoppingBag, ArrowRight, Sparkles, CheckCircle2, RefreshCw } from 'lucide-react';
 import { useStore } from '../../context/StoreContext';
 import { QuantitySelector } from '../common/QuantitySelector';
 

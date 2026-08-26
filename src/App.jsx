@@ -87,7 +87,10 @@ function AppContent() {
       case 'chat':         return <CatPage onNavigate={navigate} initialCategory={routeParams.category} />;
       case 'nos-essentiels': return <CatalogPage onNavigate={navigate} filterParams={routeParams} />;
       case 'panier':       return <CartPage onNavigate={navigate} />;
-      case 'checkout':     return <CheckoutPage onNavigate={navigate} />;
+      case 'checkout':     
+      case 'panier-check':
+      case 'commander':
+      case 'commande':     return <CheckoutPage onNavigate={navigate} />;
       case 'compte':       return <AccountPage onNavigate={navigate} />;
       case 'conseils':     return <JournalPage onNavigate={navigate} />;
       case 'a-propos':     return <AboutPage onNavigate={navigate} />;

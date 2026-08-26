@@ -3,7 +3,7 @@ import { useStore } from '../context/StoreContext';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { QuantitySelector } from '../components/common/QuantitySelector';
 import { ProductCard } from '../components/common/ProductCard';
-import { Trash2, ArrowRight, ShoppingBag, CheckCircle2, Tag, ShieldCheck, Truck } from 'lucide-react';
+import { Trash2, ArrowRight, ShoppingBag, CheckCircle2, Tag, ShieldCheck, Truck, RefreshCw } from 'lucide-react';
 
 export const CartPage = ({ onNavigate }) => {
   const {
