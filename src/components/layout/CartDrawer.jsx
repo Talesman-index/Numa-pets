@@ -137,43 +137,51 @@ export const CartDrawer = ({ onNavigate }) => {
           ) : (
             <>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
-                {cart.map((item) => (
-                  <div key={item.cartId} className="cart-item">
-                    <img src={item.product.images[0]} alt={item.product.title} className="cart-item-img" />
-                    <div>
-                      <h4 className="cart-item-title">{item.product.title}</h4>
-                      <div className="cart-item-meta">
-                        {item.variantKey}
-                        {item.isSubscription && (
-                          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', color: '#047857', fontWeight: 700 }}>
-                            <RefreshCw size={12} />
-                            <span>Livraison récurrente (-10%)</span>
-                          </span>
-                        )}
+                {cart.map((item) => {
+                  const itemKey = item.cartItemId || item.cartId || item.id;
+                  const itemTitle = item.title || item.product?.title || 'Produit NÜMA';
+                  const itemImg = item.image || item.product?.images?.[0] || item.product?.image || '/images/hero-golden-duo.jpg';
+                  const itemPrice = typeof item.price === 'number' ? item.price : (typeof item.unitPrice === 'number' ? item.unitPrice : (item.product?.price || 0));
+                  const itemVariant = item.variantKey || (item.selectedVariants ? Object.values(item.selectedVariants).filter(Boolean).join(' · ') : '');
+
+                  return (
+                    <div key={itemKey} className="cart-item">
+                      <img src={itemImg} alt={itemTitle} className="cart-item-img" />
+                      <div>
+                        <h4 className="cart-item-title">{itemTitle}</h4>
+                        <div className="cart-item-meta">
+                          {itemVariant}
+                          {item.isSubscription && (
+                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', color: '#047857', fontWeight: 700 }}>
+                              <RefreshCw size={12} />
+                              <span>Livraison récurrente (-10%)</span>
+                            </span>
+                          )}
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', marginTop: 'var(--space-2)' }}>
+                          <QuantitySelector
+                            value={item.quantity}
+                            onChange={(newQty) => updateCartQuantity(itemKey, newQty)}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => removeFromCart(itemKey)}
+                            style={{ color: 'var(--color-text-muted)', display: 'flex', alignItems: 'center' }}
+                            title="Supprimer"
+                          >
+                            <Trash2 size={15} />
+                          </button>
+                        </div>
                       </div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', marginTop: 'var(--space-2)' }}>
-                        <QuantitySelector
-                          value={item.quantity}
-                          onChange={(newQty) => updateCartQuantity(item.cartId, newQty)}
-                        />
-                        <button
-                          type="button"
-                          onClick={() => removeFromCart(item.cartId)}
-                          style={{ color: 'var(--color-text-muted)', display: 'flex', alignItems: 'center' }}
-                          title="Supprimer"
-                        >
-                          <Trash2 size={15} />
-                        </button>
+                      <div style={{ textAlign: 'right' }}>
+                        <div className="cart-item-price">{(itemPrice * item.quantity).toFixed(2)} €</div>
+                        <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)' }}>
+                          {itemPrice.toFixed(2)} € / u
+                        </div>
                       </div>
                     </div>
-                    <div style={{ textAlign: 'right' }}>
-                      <div className="cart-item-price">{(item.unitPrice * item.quantity).toFixed(2)} €</div>
-                      <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)' }}>
-                        {item.unitPrice.toFixed(2)} € / u
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
 
               {/* Cross-Sell Suggestions */}

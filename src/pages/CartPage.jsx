@@ -101,44 +101,52 @@ export const CartPage = ({ onNavigate }) => {
               {/* Items Card */}
               <div style={{ backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)' }}>
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  {cart.map((item) => (
-                    <div key={item.cartId} className="cart-item">
-                      <img src={item.product.images[0]} alt={item.product.title} className="cart-item-img" />
-                      <div>
-                        <h3 className="cart-item-title">{item.product.title}</h3>
-                        <div className="cart-item-meta">
-                          {item.variantKey}
-                          {item.isSubscription && (
-                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', color: '#047857', fontWeight: 700, marginTop: '2px' }}>
-                              <RefreshCw size={12} />
-                              <span>Abonnement récurrent (-10%)</span>
-                            </span>
-                          )}
+                  {cart.map((item) => {
+                    const itemKey = item.cartItemId || item.cartId || item.id;
+                    const itemTitle = item.title || item.product?.title || 'Produit NÜMA';
+                    const itemImg = item.image || item.product?.images?.[0] || item.product?.image || '/images/hero-golden-duo.jpg';
+                    const itemPrice = typeof item.price === 'number' ? item.price : (typeof item.unitPrice === 'number' ? item.unitPrice : (item.product?.price || 0));
+                    const itemVariant = item.variantKey || (item.selectedVariants ? Object.values(item.selectedVariants).filter(Boolean).join(' · ') : '');
+
+                    return (
+                      <div key={itemKey} className="cart-item">
+                        <img src={itemImg} alt={itemTitle} className="cart-item-img" />
+                        <div>
+                          <h3 className="cart-item-title">{itemTitle}</h3>
+                          <div className="cart-item-meta">
+                            {itemVariant}
+                            {item.isSubscription && (
+                              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', color: '#047857', fontWeight: 700, marginTop: '2px' }}>
+                                <RefreshCw size={12} />
+                                <span>Abonnement récurrent (-10%)</span>
+                              </span>
+                            )}
+                          </div>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)', marginTop: 'var(--space-3)' }}>
+                            <QuantitySelector
+                              value={item.quantity}
+                              onChange={(qty) => updateCartQuantity(itemKey, qty)}
+                            />
+                            <button
+                              type="button"
+                              onClick={() => removeFromCart(itemKey)}
+                              style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)' }}
+                              title="Supprimer cet article"
+                            >
+                              <Trash2 size={14} />
+                              <span>Supprimer</span>
+                            </button>
+                          </div>
                         </div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)', marginTop: 'var(--space-3)' }}>
-                          <QuantitySelector
-                            value={item.quantity}
-                            onChange={(qty) => updateCartQuantity(item.cartId, qty)}
-                          />
-                          <button
-                            type="button"
-                            onClick={() => removeFromCart(item.cartId)}
-                            style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)' }}
-                            title="Supprimer cet article"
-                          >
-                            <Trash2 size={14} />
-                            <span>Supprimer</span>
-                          </button>
+                        <div style={{ textAlign: 'right' }}>
+                          <div className="cart-item-price">{(itemPrice * item.quantity).toFixed(2)} €</div>
+                          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)' }}>
+                            {itemPrice.toFixed(2)} € / unité
+                          </div>
                         </div>
                       </div>
-                      <div style={{ textAlign: 'right' }}>
-                        <div className="cart-item-price">{(item.unitPrice * item.quantity).toFixed(2)} €</div>
-                        <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)' }}>
-                          {item.unitPrice.toFixed(2)} € / unité
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </div>

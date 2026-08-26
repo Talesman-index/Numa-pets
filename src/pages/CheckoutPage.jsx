@@ -476,18 +476,26 @@ export const CheckoutPage = ({ onNavigate }) => {
               </h3>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)', maxHeight: 280, overflowY: 'auto', marginBottom: 'var(--space-4)' }}>
-                {cart.map((item) => (
-                  <div key={item.cartId} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 'var(--text-xs)' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
-                      <img src={item.product.images[0]} alt={item.product.title} style={{ width: 36, height: 36, borderRadius: 'var(--radius-sm)', objectFit: 'cover' }} />
-                      <div>
-                        <div style={{ fontWeight: 600 }}>{item.product.title} (x{item.quantity})</div>
-                        <div style={{ color: 'var(--color-text-muted)' }}>{item.variantKey}</div>
+                {cart.map((item) => {
+                  const itemKey = item.cartItemId || item.cartId || item.id;
+                  const itemTitle = item.title || item.product?.title || 'Produit NÜMA';
+                  const itemImg = item.image || item.product?.images?.[0] || item.product?.image || '/images/hero-golden-duo.jpg';
+                  const itemPrice = typeof item.price === 'number' ? item.price : (typeof item.unitPrice === 'number' ? item.unitPrice : (item.product?.price || 0));
+                  const itemVariant = item.variantKey || (item.selectedVariants ? Object.values(item.selectedVariants).filter(Boolean).join(' · ') : '');
+
+                  return (
+                    <div key={itemKey} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 'var(--text-xs)' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+                        <img src={itemImg} alt={itemTitle} style={{ width: 36, height: 36, borderRadius: 'var(--radius-sm)', objectFit: 'cover' }} />
+                        <div>
+                          <div style={{ fontWeight: 600 }}>{itemTitle} (x{item.quantity})</div>
+                          <div style={{ color: 'var(--color-text-muted)' }}>{itemVariant}</div>
+                        </div>
                       </div>
+                      <div style={{ fontWeight: 700 }}>{(itemPrice * item.quantity).toFixed(2)} €</div>
                     </div>
-                    <div style={{ fontWeight: 700 }}>{(item.unitPrice * item.quantity).toFixed(2)} €</div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
 
               <div style={{ borderTop: '1px solid var(--color-border-subtle)', paddingTop: 'var(--space-3)', display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', fontSize: 'var(--text-xs)' }}>

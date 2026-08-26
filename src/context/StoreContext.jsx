@@ -136,7 +136,46 @@ export const StoreProvider = ({ children }) => {
   // Cart
   const [cart, setCart] = useState(() => {
     const saved = localStorage.getItem(STORAGE_KEYS.CART);
-    return saved ? JSON.parse(saved) : [];
+    if (!saved) return [];
+    try {
+      const parsed = JSON.parse(saved);
+      if (!Array.isArray(parsed)) return [];
+      return parsed.map((item) => {
+        const foundProd = INITIAL_PRODUCTS.find((p) => p.id === item.id) || {};
+        const unitPrice = typeof item.price === 'number' ? item.price : (typeof item.unitPrice === 'number' ? item.unitPrice : (foundProd.price || 0));
+        const itemImage = item.image || item.product?.images?.[0] || item.product?.image || foundProd.images?.[0] || foundProd.image || '/images/hero-golden-duo.jpg';
+        const itemTitle = item.title || item.product?.title || foundProd.title || 'Produit NÜMA';
+        const key = item.cartItemId || item.cartId || `${item.id || 'prod'}-${Math.random()}`;
+
+        return {
+          cartItemId: key,
+          cartId: key,
+          id: item.id || foundProd.id || 'prod-1',
+          title: itemTitle,
+          slug: item.slug || foundProd.slug || '',
+          price: unitPrice,
+          unitPrice: unitPrice,
+          originalPrice: item.originalPrice || foundProd.price || unitPrice,
+          image: itemImage,
+          selectedVariants: item.selectedVariants || {},
+          variantKey: item.variantKey || (item.selectedVariants ? Object.values(item.selectedVariants).join(' · ') : ''),
+          quantity: typeof item.quantity === 'number' && item.quantity > 0 ? item.quantity : 1,
+          isSubscription: !!item.isSubscription,
+          subscriptionFrequency: item.subscriptionFrequency || null,
+          stockQuantity: item.stockQuantity || foundProd.stockQuantity || 50,
+          product: {
+            ...foundProd,
+            id: item.id || foundProd.id,
+            title: itemTitle,
+            images: foundProd.images || [itemImage],
+            image: itemImage,
+            price: unitPrice
+          }
+        };
+      });
+    } catch {
+      return [];
+    }
   });
 
   // Favorites
@@ -220,9 +259,11 @@ export const StoreProvider = ({ children }) => {
   const addToCart = (product, selectedVariants = {}, quantity = 1, isSubscription = false, frequency = null) => {
     setCart((prevCart) => {
       const itemKey = `${product.id}-${JSON.stringify(selectedVariants)}-${isSubscription ? frequency : 'single'}`;
-      const existingItemIndex = prevCart.findIndex((item) => item.cartItemId === itemKey);
+      const existingItemIndex = prevCart.findIndex((item) => (item.cartItemId === itemKey || item.cartId === itemKey));
 
       const unitPrice = isSubscription && product.subscriptionPrice ? product.subscriptionPrice : product.price;
+      const itemImage = (product.images && product.images[0]) || product.image || '/images/hero-golden-duo.jpg';
+      const variantText = Object.values(selectedVariants).filter(Boolean).join(' · ');
 
       if (existingItemIndex > -1) {
         const updated = [...prevCart];
@@ -234,17 +275,25 @@ export const StoreProvider = ({ children }) => {
         ...prevCart,
         {
           cartItemId: itemKey,
+          cartId: itemKey,
           id: product.id,
           title: product.title,
           slug: product.slug,
           price: unitPrice,
+          unitPrice: unitPrice,
           originalPrice: product.price,
-          image: product.images && product.images.length > 0 ? product.images[0] : (product.image || '/images/hero-golden-duo.jpg'),
+          image: itemImage,
           selectedVariants,
+          variantKey: variantText,
           quantity,
           isSubscription,
           subscriptionFrequency: frequency,
-          stockQuantity: product.stockQuantity
+          stockQuantity: product.stockQuantity,
+          product: {
+            ...product,
+            images: product.images || [itemImage],
+            image: itemImage
+          }
         }
       ];
     });
@@ -258,12 +307,12 @@ export const StoreProvider = ({ children }) => {
       return;
     }
     setCart((prevCart) =>
-      prevCart.map((item) => (item.cartItemId === cartItemId ? { ...item, quantity: newQty } : item))
+      prevCart.map((item) => (item.cartItemId === cartItemId || item.cartId === cartItemId ? { ...item, quantity: newQty } : item))
     );
   };
 
   const removeFromCart = (cartItemId) => {
-    setCart((prevCart) => prevCart.filter((item) => item.cartItemId !== cartItemId));
+    setCart((prevCart) => prevCart.filter((item) => item.cartItemId !== cartItemId && item.cartId !== cartItemId));
     addToast('Article retiré du panier.');
   };
 
@@ -591,12 +640,16 @@ export const StoreProvider = ({ children }) => {
         cart,
         cartCount,
         subtotal,
+        cartSubtotal: subtotal,
         discountAmount,
         appliedDiscount,
+        appliedPromo: appliedDiscount,
         baseShippingFee,
         isFreeShipping,
         total,
+        freeShippingThreshold: 49,
         freeShippingThresholdRemaining,
+        remainingForFreeShipping: freeShippingThresholdRemaining,
         freeShippingProgress,
         favorites,
         orders,
@@ -618,7 +671,9 @@ export const StoreProvider = ({ children }) => {
         toggleFavorite,
         isFavorite,
         applyDiscount,
+        applyPromoCode: applyDiscount,
         removeDiscount,
+        removePromoCode: removeDiscount,
         placeOrder,
         cancelSubscription,
         pauseSubscription,
