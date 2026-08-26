@@ -44,8 +44,7 @@ export const FaqPage = ({ onNavigate }) => {
         {/* Hero Aide */}
         <div className="reveal-up" style={{ textAlign: 'center', marginBottom: 'var(--space-10)', backgroundColor: '#4E0000', border: '1px solid rgba(255,174,1,0.25)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-12) var(--space-8)', boxShadow: 'var(--shadow-md)', color: '#FFFFFF' }}>
           <div className="carepaw-nl-tag" style={{ margin: '0 auto var(--space-3)' }}>
-            <Sparkles size={13} color="#FFAE01" />
-            <span>Support & Assistance Client</span>
+            <span>SUPPORT &amp; ASSISTANCE CLIENT</span>
           </div>
           <h1 className="paws-section-title" style={{ fontSize: 'clamp(2.4rem, 4.5vw, 3.5rem)', color: '#FFFFFF', marginBottom: 'var(--space-3)' }}>
             Questions Fréquentes

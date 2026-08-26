@@ -25,8 +25,7 @@ export const Footer = ({ onNavigate }) => {
         <div className="carepaw-nl-row">
           <div className="carepaw-nl-left">
             <div className="carepaw-nl-tag">
-              <span>S'inscrire et Économiser</span>
-              <Sparkles size={13} color="#FFAE01" />
+              <span>S'INSCRIRE ET ÉCONOMISER</span>
             </div>
             <h2 className="carepaw-nl-title">Rejoignez notre Newsletter !</h2>
             <p className="carepaw-nl-sub">

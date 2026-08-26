@@ -32,7 +32,6 @@ export const RoutineFinderBanner = ({ onNavigate }) => {
           <div className="paws-finder-content">
             <div className="carepaw-nl-tag" style={{ marginBottom: 'var(--space-3)' }}>
               <span>GUIDE SUR-MESURE MOKI</span>
-              <Sparkles size={12} color="#FFAE01" />
             </div>
 
             <h2 className="paws-section-title" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.5rem)', color: '#FFFFFF', marginBottom: 'var(--space-3)' }}>

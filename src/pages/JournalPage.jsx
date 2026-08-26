@@ -26,8 +26,7 @@ export const JournalPage = ({ onNavigate }) => {
         {/* Hero Header Journal */}
         <div className="reveal-up" style={{ backgroundColor: '#4E0000', border: '1px solid rgba(255,174,1,0.25)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-12) var(--space-8)', textAlign: 'center', marginBottom: 'var(--space-10)', boxShadow: 'var(--shadow-md)', color: '#FFFFFF' }}>
           <div className="carepaw-nl-tag" style={{ margin: '0 auto var(--space-3)' }}>
-            <Sparkles size={13} color="#FFAE01" />
-            <span>Guides &amp; Conseils Vétérinaires</span>
+            <span>GUIDES &amp; CONSEILS VÉTÉRINAIRES</span>
           </div>
           <h1 className="paws-section-title" style={{ fontSize: 'clamp(2.4rem, 4.5vw, 3.5rem)', color: '#FFFFFF', marginBottom: 'var(--space-3)' }}>
             Le Journal MOKI
