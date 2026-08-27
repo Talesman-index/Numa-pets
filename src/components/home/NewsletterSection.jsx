@@ -27,7 +27,7 @@ export const NewsletterSection = () => {
             </div>
 
             <h2 className="paws-newsletter-title">
-              Rejoignez le Club NÜMA et<br />
+              Rejoignez le Club NÜMA et{' '}
               profitez de <span style={{ color: '#FF6B00' }}>10% offerts</span> sur votre première commande.
             </h2>
 
