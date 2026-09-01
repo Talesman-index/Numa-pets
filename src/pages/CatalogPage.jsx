@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useStore } from '../context/StoreContext';
 import { ProductCard } from '../components/common/ProductCard';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
@@ -12,6 +12,13 @@ export const CatalogPage = ({ onNavigate, filterParams = {} }) => {
   const [maxPrice, setMaxPrice] = useState(100);
   const [onlyInStock, setOnlyInStock] = useState(false);
   const [recurringOnly, setRecurringOnly] = useState(filterParams.recurringOnly || false);
+
+  useEffect(() => {
+    if (filterParams.animal !== undefined) setSelectedAnimal(filterParams.animal);
+    if (filterParams.category !== undefined) setSelectedCategory(filterParams.category);
+    if (filterParams.recurringOnly !== undefined) setRecurringOnly(filterParams.recurringOnly);
+  }, [filterParams]);
+
 
   const animalFilters = [
     { id: 'all', label: 'Tous les animaux' },

@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { INITIAL_PRODUCTS } from '../data/products';
+import * as api from '../services/api.js';
+
 
 const StoreContext = createContext();
 
@@ -594,14 +596,50 @@ export const StoreProvider = ({ children }) => {
     addToast('Profil mis à jour avec succès.', 'success');
   };
 
-  const addProductReview = (productId, reviewData) => {
+  const addProductReview = async (productId, reviewData) => {
+    // ── Try the real API first ──────────────────────────────────────────────
+    try {
+      const saved = await api.reviews.create(productId, {
+        author: reviewData.author,
+        rating: Number(reviewData.rating) || 5,
+        title: reviewData.title || '',
+        text: reviewData.text,
+      });
+
+      // Sync local state with the saved review
+      setProducts((prev) =>
+        prev.map((p) => {
+          if (p.id === productId) {
+            const updatedReviews = [saved, ...(p.reviews || [])];
+            const newAvg = (
+              updatedReviews.reduce((sum, r) => sum + r.rating, 0) / updatedReviews.length
+            ).toFixed(1);
+            return {
+              ...p,
+              reviews: updatedReviews,
+              rating: parseFloat(newAvg),
+              reviewCount: (p.reviewCount || 0) + 1,
+            };
+          }
+          return p;
+        })
+      );
+
+      addToast('Votre avis a été publié avec succès !', 'success');
+      return;
+    } catch (apiErr) {
+      // If back-end is unreachable, fall back to localStorage-only
+      console.warn('API unavailable, using local fallback:', apiErr.message);
+    }
+
+    // ── LocalStorage fallback ──────────────────────────────────────────────
     const newRev = {
       id: `rev-${Date.now()}`,
       author: reviewData.author,
       rating: reviewData.rating || 5,
       date: new Date().toLocaleDateString('fr-FR'),
       title: reviewData.title || 'Avis vérifié',
-      text: reviewData.text
+      text: reviewData.text,
     };
 
     setProducts((prev) =>
@@ -615,7 +653,7 @@ export const StoreProvider = ({ children }) => {
             ...p,
             reviews: updatedReviews,
             rating: parseFloat(newAvgRating),
-            reviewCount: (p.reviewCount || 0) + 1
+            reviewCount: (p.reviewCount || 0) + 1,
           };
         }
         return p;
@@ -624,6 +662,7 @@ export const StoreProvider = ({ children }) => {
 
     addToast('Votre avis a été publié avec succès !', 'success');
   };
+
 
   // Helper to reset products cache to factory defaults
   const resetProductsToDefault = () => {

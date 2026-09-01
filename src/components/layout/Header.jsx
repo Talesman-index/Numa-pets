@@ -1,52 +1,95 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   ArrowUpRight, Search, User, ShoppingBag, SlidersHorizontal,
   Menu, X, PawPrint, Truck, Sparkles, Package, ChevronRight,
-  Heart, HelpCircle, BookOpen, Home, Dog
+  Heart, HelpCircle, BookOpen, Home, ChevronDown, Cat, Dog
 } from 'lucide-react';
 import { useStore } from '../../context/StoreContext';
 
 const navItems = [
-  { id: 'accueil',        label: 'Accueil',          icon: Home },
-  { id: 'chien',          label: 'Chien',             icon: null },
-  { id: 'chat',           label: 'Chat',              icon: null },
-  { id: 'nos-essentiels', label: 'Nos essentiels',    icon: null },
-  { id: 'conseils',       label: 'Le Journal',        icon: BookOpen },
-  { id: 'a-propos',       label: 'À propos',          icon: Heart },
-  { id: 'faq',            label: 'Aide & FAQ',        icon: HelpCircle },
+  { id: 'accueil',  label: 'Accueil',    icon: Home },
+  { id: 'nos-essentiels', label: 'Boutique', icon: null, hasDropdown: true },
+  { id: 'conseils', label: 'Le Journal', icon: BookOpen },
+  { id: 'a-propos', label: 'À propos',   icon: Heart },
+  { id: 'faq',      label: 'Aide & FAQ', icon: HelpCircle },
+];
+
+// Mega-dropdown content
+const DROPDOWN_SECTIONS = [
+  {
+    heading: 'Pour mon chien 🐕',
+    animal: 'dog',
+    links: [
+      { label: 'Tous les produits chien', category: 'all' },
+      { label: 'Promenade & Harnais',     category: 'walk' },
+      { label: 'Soin & Toilette',         category: 'care' },
+      { label: 'Jeux & Jouets',           category: 'play' },
+    ],
+  },
+  {
+    heading: 'Pour mon chat 🐱',
+    animal: 'cat',
+    links: [
+      { label: 'Tous les produits chat',  category: 'all' },
+      { label: 'Soin & Toilette',         category: 'care' },
+      { label: 'Jeux & Instinct',         category: 'play' },
+      { label: 'Confort & Couchage',      category: 'comfort' },
+    ],
+  },
 ];
 
 export const Header = ({ currentRoute, onNavigate }) => {
   const { cartCount, setIsCartOpen, setIsSearchOpen } = useStore();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileShopOpen, setMobileShopOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  const dropdownTimer = useRef(null);
+
   const [isAnnouncementVisible, setIsAnnouncementVisible] = useState(() => {
-    try {
-      return !sessionStorage.getItem('moki_announcement_closed');
-    } catch {
-      return true;
-    }
+    try { return !sessionStorage.getItem('moki_announcement_closed'); }
+    catch { return true; }
   });
 
   const handleCloseAnnouncement = (e) => {
     e.stopPropagation();
     setIsAnnouncementVisible(false);
-    try {
-      sessionStorage.setItem('moki_announcement_closed', 'true');
-    } catch {
-      // ignore
-    }
+    try { sessionStorage.setItem('moki_announcement_closed', 'true'); }
+    catch { /* ignore */ }
   };
 
-  const handleNav = (routeId) => {
-    onNavigate(routeId);
+  const handleNav = (routeId, params = {}) => {
+    onNavigate(routeId, params);
     setDrawerOpen(false);
+    setDropdownOpen(false);
+    setMobileShopOpen(false);
   };
 
-  // Lock body scroll when drawer is open
+  const handleDropdownNav = (animal, category) => {
+    handleNav('nos-essentiels', { animal, category });
+  };
+
+  // Dropdown mouse events — delay hide to allow moving to dropdown
+  const handleMouseEnterTrigger = () => {
+    clearTimeout(dropdownTimer.current);
+    setDropdownOpen(true);
+  };
+  const handleMouseLeave = () => {
+    dropdownTimer.current = setTimeout(() => setDropdownOpen(false), 120);
+  };
+  const handleMouseEnterDropdown = () => {
+    clearTimeout(dropdownTimer.current);
+    setDropdownOpen(true);
+  };
+
+  // Lock body scroll when mobile drawer is open
   useEffect(() => {
     document.body.style.overflow = drawerOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [drawerOpen]);
+
+  // Close dropdown on route change
+  useEffect(() => { setDropdownOpen(false); }, [currentRoute]);
 
   return (
     <>
@@ -103,24 +146,106 @@ export const Header = ({ currentRoute, onNavigate }) => {
               <span className="cream-logo-text" style={{ color: '#4E0000' }}>NÜMA</span>
             </button>
 
-            {/* Desktop nav — hidden on mobile */}
-            <nav className="cream-nav-links">
-              {navItems.slice(0, 6).map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => handleNav(item.id)}
-                  className={`cream-nav-link ${currentRoute === item.id ? 'active' : ''}`}
-                  style={{ color: currentRoute === item.id ? '#FFAE01' : '#4E0000' }}
-                >
-                  {item.label}
-                </button>
-              ))}
+            {/* ── Desktop nav ── */}
+            <nav className="cream-nav-links" ref={dropdownRef}>
+              {navItems.slice(0, 5).map((item) => {
+                if (item.hasDropdown) {
+                  return (
+                    <div
+                      key={item.id}
+                      className="nav-dropdown-wrapper"
+                      onMouseEnter={handleMouseEnterTrigger}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => handleNav(item.id)}
+                        className={`cream-nav-link nav-dropdown-trigger ${
+                          ['nos-essentiels','chien','chat'].includes(currentRoute) ? 'active' : ''
+                        }`}
+                        style={{
+                          color: ['nos-essentiels','chien','chat'].includes(currentRoute)
+                            ? '#FFAE01' : '#4E0000',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 4,
+                        }}
+                        aria-expanded={dropdownOpen}
+                        aria-haspopup="true"
+                      >
+                        {item.label}
+                        <ChevronDown
+                          size={13}
+                          style={{
+                            transition: 'transform 0.2s',
+                            transform: dropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                          }}
+                        />
+                      </button>
+
+                      {/* ── Mega Dropdown ── */}
+                      {dropdownOpen && (
+                        <div
+                          className="nav-mega-dropdown"
+                          onMouseEnter={handleMouseEnterDropdown}
+                          onMouseLeave={handleMouseLeave}
+                        >
+                          <div className="nav-mega-inner">
+                            {DROPDOWN_SECTIONS.map((section) => (
+                              <div key={section.animal} className="nav-mega-col">
+                                <div className="nav-mega-heading">{section.heading}</div>
+                                {section.links.map((link) => (
+                                  <button
+                                    key={`${section.animal}-${link.category}`}
+                                    type="button"
+                                    className="nav-mega-link"
+                                    onClick={() => handleDropdownNav(section.animal, link.category)}
+                                  >
+                                    <ChevronRight size={12} />
+                                    {link.label}
+                                  </button>
+                                ))}
+                              </div>
+                            ))}
+
+                            {/* CTA column */}
+                            <div className="nav-mega-cta-col">
+                              <button
+                                type="button"
+                                className="nav-mega-cta-btn"
+                                onClick={() => handleNav('nos-essentiels')}
+                              >
+                                <Sparkles size={14} />
+                                Tous les produits
+                              </button>
+                              <p className="nav-mega-cta-sub">
+                                Livraison offerte dès 49 €
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                // Regular nav link
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => handleNav(item.id)}
+                    className={`cream-nav-link ${currentRoute === item.id ? 'active' : ''}`}
+                    style={{ color: currentRoute === item.id ? '#FFAE01' : '#4E0000' }}
+                  >
+                    {item.label}
+                  </button>
+                );
+              })}
             </nav>
 
             {/* Right icons */}
             <div className="cream-header-actions">
-              {/* Search — hidden on mobile (in drawer) */}
               <button
                 type="button"
                 className="cream-icon-btn cream-desktop-only"
@@ -130,7 +255,6 @@ export const Header = ({ currentRoute, onNavigate }) => {
                 <Search size={17} />
               </button>
 
-              {/* Account — hidden on mobile (in drawer) */}
               <button
                 type="button"
                 className="cream-icon-btn cream-desktop-only"
@@ -140,7 +264,6 @@ export const Header = ({ currentRoute, onNavigate }) => {
                 <User size={17} />
               </button>
 
-              {/* Cart — always visible */}
               <button
                 type="button"
                 className="cream-icon-btn"
@@ -154,7 +277,6 @@ export const Header = ({ currentRoute, onNavigate }) => {
                 )}
               </button>
 
-              {/* Admin pill — desktop only */}
               <button
                 type="button"
                 onClick={() => handleNav('admin')}
@@ -165,7 +287,6 @@ export const Header = ({ currentRoute, onNavigate }) => {
                 <span>Admin</span>
               </button>
 
-              {/* Boutique CTA — desktop only */}
               <button
                 type="button"
                 onClick={() => handleNav('nos-essentiels')}
@@ -224,10 +345,33 @@ export const Header = ({ currentRoute, onNavigate }) => {
             </div>
           </div>
 
+          {/* ── Animal quick-select — mobile ── */}
+          <div className="cream-drawer-section-label">Choisissez votre animal</div>
+          <div className="cream-drawer-animal-pills">
+            <button
+              type="button"
+              className="drawer-animal-pill"
+              onClick={() => handleDropdownNav('dog', 'all')}
+            >
+              <span className="drawer-animal-emoji">🐕</span>
+              <span>Pour mon chien</span>
+              <ChevronRight size={14} />
+            </button>
+            <button
+              type="button"
+              className="drawer-animal-pill"
+              onClick={() => handleDropdownNav('cat', 'all')}
+            >
+              <span className="drawer-animal-emoji">🐱</span>
+              <span>Pour mon chat</span>
+              <ChevronRight size={14} />
+            </button>
+          </div>
+
           {/* Section label */}
           <div className="cream-drawer-section-label">Navigation</div>
 
-          {/* Nav links */}
+          {/* Nav links (without chien/chat) */}
           <div className="cream-drawer-nav">
             {navItems.map((item) => (
               <button
@@ -268,7 +412,7 @@ export const Header = ({ currentRoute, onNavigate }) => {
             </button>
             <button
               type="button"
-              onClick={() => setIsSearchOpen(true) || setDrawerOpen(false)}
+              onClick={() => { setIsSearchOpen(true); setDrawerOpen(false); }}
               className="cream-mobile-link"
             >
               <Search size={14} color="rgba(255,255,255,0.4)" />
@@ -292,7 +436,7 @@ export const Header = ({ currentRoute, onNavigate }) => {
               className="cream-drawer-cta-primary"
             >
               <Sparkles size={15} />
-              Voir la boutique
+              Voir toute la boutique
               <ArrowUpRight size={15} />
             </button>
           </div>
