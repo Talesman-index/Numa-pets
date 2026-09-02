@@ -316,6 +316,39 @@ export const ProductDetailPage = ({ slug, onNavigate }) => {
               </div>
             )}
 
+            {/* ── Storytelling Produit NÜMA ── */}
+            <div style={{
+              backgroundColor: '#FAF6ED',
+              border: '1px solid rgba(255, 107, 0, 0.2)',
+              borderRadius: 'var(--radius-xl)',
+              padding: 'var(--space-4) var(--space-5)',
+              margin: 'var(--space-6) 0',
+              display: 'flex',
+              gap: 'var(--space-4)',
+              alignItems: 'center'
+            }}>
+              <div style={{
+                width: 42,
+                height: 42,
+                borderRadius: 'var(--radius-full)',
+                backgroundColor: 'rgba(255, 107, 0, 0.12)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0
+              }}>
+                <Heart size={20} color="#FF6B00" />
+              </div>
+              <div>
+                <div style={{ fontSize: 'var(--text-xs)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#FF6B00', marginBottom: 2 }}>
+                  Ce que NÜMA vous propose
+                </div>
+                <p style={{ fontSize: '0.88rem', color: '#333333', lineHeight: 1.5, margin: 0 }}>
+                  Une conception ergonomique et bienveillante, testée pour durer et respecter la physiologie de votre {product.animal === 'dog' ? 'chien' : 'chat'} au quotidien.
+                </p>
+              </div>
+            </div>
+
             {/* Accordion Sections */}
             <div className="pdp-accordion">
               {/* Section 2: Comment l'utiliser */}

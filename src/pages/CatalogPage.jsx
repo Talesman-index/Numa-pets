@@ -59,13 +59,13 @@ export const CatalogPage = ({ onNavigate, filterParams = {} }) => {
         {/* Catalog Hero Banner */}
         <div className="reveal-up" style={{ backgroundColor: '#4E0000', border: '1px solid rgba(255,174,1,0.25)', borderRadius: 'var(--radius-2xl)', padding: 'var(--space-12) var(--space-8)', marginBottom: 'var(--space-10)', textAlign: 'center', boxShadow: 'var(--shadow-md)', color: '#FFFFFF' }}>
           <div className="carepaw-nl-tag" style={{ margin: '0 auto var(--space-3)' }}>
-            <span>SÉLECTION COURTE &amp; ÉTHIQUE</span>
+            <span>SÉLECTION ESSENTIELLE</span>
           </div>
           <h1 className="paws-section-title" style={{ fontSize: 'clamp(2.4rem, 4.5vw, 3.5rem)', color: '#FFFFFF', marginBottom: 'var(--space-3)' }}>
-            Nos Essentiels pour Chiens & Chats
+            Ce que NÜMA vous propose
           </h1>
-          <p className="paws-section-lead" style={{ margin: '0 auto', fontSize: '1.05rem', color: 'rgba(255,255,255,0.8)' }}>
-            15 à 20 références rigoureusement sélectionnées. Zéro alimentation, zéro médicament, uniquement ce qui compte.
+          <p className="paws-section-lead" style={{ margin: '0 auto', fontSize: '1.05rem', color: 'rgba(255,255,255,0.85)', maxWidth: '720px' }}>
+            18 essentiels du quotidien sélectionnés avec exigence. Pas de superflu : des équipements ergonomiques, des soins d'hygiène doux et des créations durables.
           </p>
         </div>
 

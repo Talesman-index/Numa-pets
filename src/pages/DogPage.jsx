@@ -52,10 +52,10 @@ export const DogPage = ({ onNavigate, initialCategory }) => {
             <span>UNIVERS CHIEN NÜMA</span>
           </div>
           <h1 className="paws-section-title" style={{ fontSize: 'clamp(2.4rem, 4.5vw, 3.5rem)', color: '#FFFFFF', marginBottom: 'var(--space-3)' }}>
-            Tout pour son bien-être au quotidien
+            Ce que NÜMA vous propose pour votre chien
           </h1>
-          <p className="paws-section-lead" style={{ margin: '0 auto', fontSize: '1.05rem', color: 'rgba(255,255,255,0.8)' }}>
-            Harnais ergonomiques sans traction, laisses polyvalentes, soins doux au pH neutre et coussins orthopédiques.
+          <p className="paws-section-lead" style={{ margin: '0 auto', fontSize: '1.05rem', color: 'rgba(255,255,255,0.85)', maxWidth: '720px' }}>
+            Des harnais ergonomiques en Y préservant la trachée, des laisses amortissantes, des soins doux au pH neutre et des couchages à mémoire de forme pour son confort absolu.
           </p>
         </div>
 

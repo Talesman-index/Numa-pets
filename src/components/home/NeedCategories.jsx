@@ -7,7 +7,7 @@ export const NeedCategories = ({ onNavigate }) => {
       id: 'chien',
       tag: 'COLLECTION CHIEN',
       title: 'Équipements & Soins pour Chien',
-      desc: 'Harnais anti-traction, laisses robustes, baumes pour coussinets et shampoings doux.',
+      desc: 'NÜMA vous propose des harnais en Y anti-traction qui préservent leur trachée, des laisses robustes et des baumes réparateurs.',
       image: '/images/hero-golden-duo.jpg',
       badgeColor: 'var(--color-pastel-green)',
       route: 'chien'
@@ -16,7 +16,7 @@ export const NeedCategories = ({ onNavigate }) => {
       id: 'chat',
       tag: 'COLLECTION CHAT',
       title: 'Confort & Hygiène pour Chat',
-      desc: 'Arbres à chat épurés, brosses de mue, lingettes apaisantes et paniers douillets.',
+      desc: 'NÜMA vous propose des mousses de soin sans stress, des brosses de mue massantes et des couchages apaisants.',
       image: '/images/cat-lying-happy.png',
       badgeColor: 'var(--color-pastel-teal)',
       route: 'chat'
@@ -25,7 +25,7 @@ export const NeedCategories = ({ onNavigate }) => {
       id: 'hygiene',
       tag: 'ROUTINE ESSENTIELLE',
       title: 'Packs Soin & Abonnement',
-      desc: 'Recevez automatiquement vos consommables indispensables à domicile avec 10% d’économie.',
+      desc: 'NÜMA vous propose la tranquillité d’esprit avec vos consommables indispensables livrés automatiquement, avec -10%.',
       image: '/images/product-packs-trio.png',
       badgeColor: 'var(--color-pastel-yellow)',
       route: 'nos-essentiels'
@@ -42,11 +42,11 @@ export const NeedCategories = ({ onNavigate }) => {
             <span>PAR UNIVERS</span>
           </div>
           <h2 className="paws-section-title">
-            Tout le nécessaire,<br />
-            <span style={{ color: 'var(--color-brand-primary)' }}>sans le superflu.</span>
+            Ce que NÜMA vous propose,<br />
+            <span style={{ color: 'var(--color-brand-primary)' }}>pensé pour chaque rituel.</span>
           </h2>
           <p className="paws-section-lead" style={{ margin: '0 auto' }}>
-            Des produits pensés pour faciliter vos rituels quotidiens de promenade, de repos et d'hygiène.
+            De la promenade du matin aux moments de repos partagés, découvrez des indispensables créés à hauteur de museau.
           </p>
         </div>
 

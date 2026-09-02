@@ -33,11 +33,11 @@ export const HeroSection = ({ onNavigate }) => {
             </div>
 
             <h2 className="paws-left-title">
-              Sélection Courte,<br />Utile &amp; Maîtrisée.
+              NÜMA vous propose<br />l'essentiel, sans superflu.
             </h2>
 
             <p className="paws-left-desc">
-              Soin, promenade, jeu et confort : une sélection courte d’essentiels choisis pour leur quotidien. Vente directe et sans superflu.
+              Soin bienveillant, promenade sereine, jeu stimulant et repos absolu : NÜMA vous propose une sélection courte de 18 indispensables pensés pour leur vraie vie.
             </p>
 
             <button

@@ -36,12 +36,12 @@ export const BondStorySection = ({ onNavigate }) => {
             </div>
 
             <h2 className="paws-section-title">
-              Moins de produits,<br />
-              <span style={{ color: 'var(--color-brand-primary)' }}>infiniment plus d'attention.</span>
+              Ce que NÜMA vous propose :<br />
+              <span style={{ color: 'var(--color-brand-primary)' }}>moins de superflu, infiniment plus d'attention.</span>
             </h2>
 
             <p className="paws-section-lead">
-              Nous avons fait le choix d’une sélection volontairement courte de 18 essentiels. Ni alimentation, ni médicaments : uniquement des accessoires ergonomiques, des équipements pratiques et des soins d'hygiène doux.
+              NÜMA vous propose une sélection resserrée de 18 essentiels où chaque création a une raison d'être. Ni alimentation, ni médicaments : uniquement des accessoires ergonomiques, des équipements durables et des soins d'hygiène d'une douceur absolue.
             </p>
 
             <div className="paws-story-checklist">
@@ -50,8 +50,8 @@ export const BondStorySection = ({ onNavigate }) => {
                   <Check size={14} />
                 </div>
                 <div>
-                  <strong>Sélection 100% Utile</strong>
-                  <p>Pas de superflu. Chaque produit répond à un usage concret du quotidien (promenade, soin, jeu, repos).</p>
+                  <strong>NÜMA vous propose une ergonomie pensée pour leur corps</strong>
+                  <p>Harnais en Y libérant la trachée, laisses amortissantes et couchages à mémoire de forme qui soulagent les articulations.</p>
                 </div>
               </div>
 
@@ -60,8 +60,8 @@ export const BondStorySection = ({ onNavigate }) => {
                   <Check size={14} />
                 </div>
                 <div>
-                  <strong>Formules Saines &amp; Respectueuses</strong>
-                  <p>Shampoings, lingettes et baumes sans alcool, sans parabènes, respectant le pH physiologique de l'animal.</p>
+                  <strong>NÜMA vous propose des formules saines &amp; respectueuses</strong>
+                  <p>Shampoings, mousses sans rinçage et baumes coussinets sans alcool ni parabènes, au pH strictement physiologique.</p>
                 </div>
               </div>
 
@@ -70,8 +70,8 @@ export const BondStorySection = ({ onNavigate }) => {
                   <Check size={14} />
                 </div>
                 <div>
-                  <strong>Vente Directe &amp; Transparence</strong>
-                  <p>Un modèle sans intermédiaire pour proposer une offre claire et accessible.</p>
+                  <strong>NÜMA vous propose la transparence et le juste prix</strong>
+                  <p>Un modèle direct sans intermédiaire pour vous garantir une qualité irréprochable et un stock expédié depuis la France.</p>
                 </div>
               </div>
             </div>

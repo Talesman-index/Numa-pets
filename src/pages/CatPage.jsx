@@ -51,10 +51,10 @@ export const CatPage = ({ onNavigate, initialCategory }) => {
             <span>UNIVERS FÉLIN NÜMA</span>
           </div>
           <h1 className="paws-section-title" style={{ fontSize: 'clamp(2.4rem, 4.5vw, 3.5rem)', color: '#FFFFFF', marginBottom: 'var(--space-3)' }}>
-            Le confort & l’hygiène de votre chat
+            Ce que NÜMA vous propose pour votre chat
           </h1>
-          <p className="paws-section-lead" style={{ margin: '0 auto', fontSize: '1.05rem', color: 'rgba(255,255,255,0.8)' }}>
-            Brosses anti-mue douces, mousses sans rinçage sans stress, griffoirs minimalistes en chêne et cannes de jeu.
+          <p className="paws-section-lead" style={{ margin: '0 auto', fontSize: '1.05rem', color: 'rgba(255,255,255,0.85)', maxWidth: '720px' }}>
+            Des mousses sans rinçage anti-stress, des brosses de mue apaisantes, des griffoirs épurés en bois noble et des cannes de jeu pour honorer leur instinct naturel.
           </p>
         </div>
 

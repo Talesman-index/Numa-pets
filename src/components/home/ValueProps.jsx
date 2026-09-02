@@ -5,26 +5,26 @@ export const ValueProps = ({ onNavigate }) => {
   const pillars = [
     {
       num: '01',
-      title: 'Sélection maîtrisée',
-      desc: 'Une gamme volontairement courte pour faciliter le choix.',
+      title: 'Sélection resserrée',
+      desc: 'NÜMA vous propose 18 essentiels indispensables pour vous épargner des heures de recherche superflue.',
       icon: <Sparkles size={20} />
     },
     {
       num: '02',
-      title: 'Des essentiels pour leur quotidien',
-      desc: 'Soin, promenade, jeu, hygiène et confort réunis dans une sélection claire.',
+      title: 'Conception anatomique',
+      desc: 'NÜMA vous propose des équipements qui respectent leur morphologie et préservent leurs articulations.',
       icon: <ShieldCheck size={20} />
     },
     {
       num: '03',
-      title: 'Exigences de sécurité',
-      desc: 'Les informations de sécurité et de conformité doivent être accessibles pour les produits concernés.',
+      title: 'Formules clean & douces',
+      desc: 'NÜMA vous propose des soins au pH physiologique, sans alcool ni agents agressifs pour leur peau.',
       icon: <HeartHandshake size={20} />
     },
     {
       num: '04',
-      title: 'Stock basé en France',
-      desc: 'Une organisation logistique pensée pour faciliter la préparation et l’expédition des commandes.',
+      title: 'Stock & Expédition en France',
+      desc: 'NÜMA vous propose une livraison rapide et soignée sous 24/48h directement depuis notre entrepôt français.',
       icon: <Truck size={20} />
     }
   ];
@@ -42,8 +42,8 @@ export const ValueProps = ({ onNavigate }) => {
             </div>
             
             <h2 className="paws-section-title">
-              Pourquoi choisir<br />
-              <span style={{ color: 'var(--color-brand-primary)' }}>NÜMA ?</span>
+              Ce que NÜMA vous garantit<br />
+              <span style={{ color: 'var(--color-brand-primary)' }}>au quotidien.</span>
             </h2>
 
             <div className="paws-pillars-grid">

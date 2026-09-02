@@ -20,11 +20,14 @@ export const EssentialsGrid = ({ onNavigate }) => {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 'var(--space-8)', flexWrap: 'wrap', gap: 'var(--space-4)' }}>
           <div>
             <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--color-brand-primary)' }}>
-              Les Best-Sellers
+              Les Best-Sellers NÜMA
             </span>
-            <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.75rem)', fontWeight: 800, color: 'var(--color-brand-deep)', marginTop: 'var(--space-1)' }}>
-              Nos Essentiels les plus plébiscités
+            <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.75rem)', fontWeight: 800, color: 'var(--color-brand-deep)', marginTop: 'var(--space-1)', marginBottom: 'var(--space-2)' }}>
+              Ce que NÜMA vous propose de meilleur
             </h2>
+            <p style={{ fontSize: '0.95rem', color: 'var(--color-text-secondary)', maxWidth: '520px', margin: 0 }}>
+              Une sélection resserrée de 18 essentiels plébiscités pour leur utilité concrète, leur durabilité et leur douceur au quotidien.
+            </p>
           </div>
 
           {/* Filter Pills */}
